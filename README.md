@@ -131,6 +131,7 @@ Projects like this are almost never done solo. Here are some of the many who mad
 - Michael Okuda: the original LCARS design
 - Jim @ theLCARS.com
 - @grandkhan221b on tumblr for sharing their amazing art
+- trekcore.com for collecting and sharing so much audio
 - Everyone who contributed to open source projects we used, including ESP32, LVGL, audio-tools, painlessMesh, Async TCP, TaskScheduler, Arduino, Invoke AI and all the talented contributors on HuggingFace
 - Anyone whose posts helped me write better code
 - The range of AIs (and all the training material they learned from) that helped me
