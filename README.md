@@ -132,9 +132,10 @@ Projects like this are almost never done solo. Here are some of the many who mad
 - Jim @ theLCARS.com
 - @grandkhan221b on tumblr for sharing their amazing art
 - trekcore.com for collecting and sharing so much audio
-- Everyone who contributed to open source projects we used, including ESP32, LVGL, audio-tools, painlessMesh, Async TCP, TaskScheduler, Arduino, Invoke AI and all the talented contributors on HuggingFace
-- Anyone whose posts helped me write better code
-- The range of AIs (and all the training material they learned from) that helped me
+- Everyone who contributed to open source projects we used, including ESP32, LVGL, audio-tools, painlessMesh, Async TCP, TaskScheduler, Arduino, EEZ Studio, Invoke AI and all the talented contributors on HuggingFace
+- Special thanks to both the Visual Studio 2022 and Visual Micro development teams
+- Anyone whose posts helped me write better code (there were a lot)
+- The range of AIs (and all the training material they learned from) that helped me - Claude and ChatGPT in particular (and the adults that paid for Pro on each for me)
 - Anyone else I forgot (sorry!)
 # AI & IP Disclosure
 All images in this were either created by AI at my direction or drawn by me. 
