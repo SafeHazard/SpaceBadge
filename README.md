@@ -141,8 +141,8 @@ Projects like this are almost never done solo. Here are some of the many who mad
 - Anyone whose posts helped me write better code (there were a lot)
 - The range of AIs (and all the training material they learned from) that helped me - Claude and ChatGPT in particular (and the adults that paid for Pro on each for me)
 - Anyone else I forgot (sorry!)
-# AI & IP Disclosure
-All images in this were either created by AI at my direction or drawn by me. 
+# AI Disclosure
+All images in this were either created by Artificial Intelligence (AI) at my direction or created by me. 
 Reference images were used in many cases, but to the best of my knowledge & efforts, no commercial content was used in this badge and I used the work of others with permission and within requested scope. Any misuse was unintentional.
 If you plan to use any portion of this project, please check applicable laws to ensure you are respecting the intellectual property of others. I've done my best to do that in this project and am grateful for the patience and understanding of IP owners if I made any mistakes. Thank you!
 # Intellectual Property Disclaimer
