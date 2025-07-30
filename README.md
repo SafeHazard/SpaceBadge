@@ -20,11 +20,14 @@ This repo is here to share the code that makes the badge go, share the BOM, encl
 This project was a huge effort for a high school sophomore. I genuinely hope you love it.
 # Usage
 ## Buttons
-
 From the front of the enclosure (farthest from the text on the side and USB port):
 - **Bootloader** - hold this down while powering on/resetting the board to enter bootloader mode, then release
 - **Power off** - press this to immediately shut down your badge. If connected to USB power, this reboots your badge
 - **Power on** - press and hold for ~2 seconds to power the badge on
+## LEDs & Charging
+- **Red LED:** Badge is powered on
+- **Green LED:** Badge is charging (over USB-C)
+  - The green LED turns off once charging is complete
 ## Main Screen
 - The main screens are accessible along the left of the screen
 - The icons across the bottom tell you:
