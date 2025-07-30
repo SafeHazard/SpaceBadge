@@ -8,7 +8,8 @@ The official repo of SPACE BADGE.
 - [Hardware Bill of Materials (BOM)](#hardware-bill-of-materials-bom)
 - [Enclosure](#enclosure)
 - [Credits](#credits)
-- [AI & IP Disclosure](#ai--ip-disclosure)
+- [AI Disclosure](#ai--ip-disclosure)
+- [IP Disclaimer](#intellectual-property-disclaimer)
 
 # Intro
 I created the Space Badge for DEF CON 33 in 2024-2025. It's meant to be a fun, multiplayer electronic badge for a conference and a community that I love.
@@ -144,3 +145,9 @@ Projects like this are almost never done solo. Here are some of the many who mad
 All images in this were either created by AI at my direction or drawn by me. 
 Reference images were used in many cases, but to the best of my knowledge & efforts, no commercial content was used in this badge and I used the work of others with permission and within requested scope. Any misuse was unintentional.
 If you plan to use any portion of this project, please check applicable laws to ensure you are respecting the intellectual property of others. I've done my best to do that in this project and am grateful for the patience and understanding of IP owners if I made any mistakes. Thank you!
+# Intellectual Property Disclaimer
+- This project is an independent fan creation not affiliated with, endorsed by, or sponsored by any intellectual property holders referenced herein. All original artwork was created by the project team or generated using AI tools under our direction.
+- Any resemblance to existing intellectual properties is intended as parody, homage, or fair use commentary in the spirit of fan appreciation. Reference materials may have been used for inspiration, but all final implementations represent transformative works.
+- This product is sold based on its technical functionality and craftsmanship, not on any intellectual property references. Purchasers are advised that they are buying an electronic badge/device, and any IP-related content is incidental to the core product.
+- No trademark or copyright infringement is intended. All trademarks and copyrights remain the property of their respective owners. If any intellectual property holder objects to references made herein, please contact us for immediate resolution.
+- This disclaimer does not constitute legal advice. Users assume all risks associated with the use of this product.
