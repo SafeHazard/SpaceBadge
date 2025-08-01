@@ -151,3 +151,11 @@ If you plan to use any portion of this project, please check applicable laws to 
 - This product is sold based on its technical functionality and craftsmanship, not on any intellectual property references. Purchasers are advised that they are buying an electronic badge/device, and any IP-related content is incidental to the core product.
 - No trademark or copyright infringement is intended. All trademarks and copyrights remain the property of their respective owners. If any intellectual property holder objects to references made herein, please contact us for immediate resolution.
 - This disclaimer does not constitute legal advice. Users assume all risks associated with the use of this product.
+# Known Issues
+- It may take 30-ish seconds for game hosts and clients to "see" each other
+- Audio may cut out; a reboot tends to fix that
+- There may be occasional issues that cause a board to reboot
+- If you find yourself in a 'boot loop' situation:
+  - If you can mount the LittleFS partition and edit default.json you can fix whatever setting is causing issues
+  - If not, you can flash your badge with the precompiled .bin from this repo (or build one yourself - it's fun-ish)
+
