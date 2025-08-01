@@ -32,7 +32,7 @@ From the front of the enclosure (farthest from the text on the side and USB port
 ## Main Screen
 - The main screens are accessible along the left of the screen
 - The icons across the bottom tell you:
-	- Battery charge (estimated)
+	- Battery charge (estimated; also: don't trust it when plugged in)
 	- Badge mode (enabled/disabled)
 	- Wifi status (enabled/disabled)
 ## Setup
