@@ -153,7 +153,8 @@ If you plan to use any portion of this project, please check applicable laws to 
 - No trademark or copyright infringement is intended. All trademarks and copyrights remain the property of their respective owners. If any intellectual property holder objects to references made herein, please contact us for immediate resolution.
 - This disclaimer does not constitute legal advice. Users assume all risks associated with the use of this product.
 # Known Issues
-- It may take 30-ish seconds for game hosts and clients to "see" each other
+- Booting is a tad slow, but I did it that way to make the UI much more responsive (frames/second vs seconds/frame)
+- It can take 30-ish seconds for game hosts and clients to "see" each other
 - Audio may cut out; a reboot tends to fix that
 - There may be occasional issues that cause a board to reboot
 - If you find yourself in a 'boot loop' situation:
