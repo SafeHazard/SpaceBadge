@@ -10,6 +10,7 @@ The official repo of SPACE BADGE.
 - [Credits](#credits)
 - [AI Disclosure](#ai--ip-disclosure)
 - [IP Disclaimer](#intellectual-property-disclaimer)
+- [Known Issues](#known-issues)
 
 # Intro
 I created the Space Badge for DEF CON 33 in 2024-2025. It's meant to be a fun, multiplayer electronic badge for a conference and a community that I love.
