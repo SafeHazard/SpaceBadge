@@ -5,6 +5,7 @@ The official repo of SPACE BADGE.
 - [Multiplayer](#multiplayer)
 - [Games](#games)
 - [Single Player](#single-player)
+- [Flashing](#flashing)
 - [Hardware Bill of Materials (BOM)](#hardware-bill-of-materials-bom)
 - [Enclosure](#enclosure)
 - [Credits](#credits)
@@ -115,6 +116,18 @@ Use the force (of tapping) to avoid obstacles as you speed toward the finish.
 Tap in the direction you want to move; there are 3 'lanes' to choose from.
 # Single Player
 - The process is the same as 'Hosting' a game, but start the game before anyone joins (or enable your cloak).
+# Flashing
+You can build from source or you can use the precompiled binaries posted here.
+There are a lot of tutorials out there on how to use esptool, so this section is meant to get you started.
+- Get esptool from either [here](https://github.com/espressif/esptool) or install it as a part of Arduino IDE [here](https://www.arduino.cc/en/software)
+- Download your binary of choice from this repo (should be ~16 MB)
+- Connect your board to your PC
+- Figure out what port your board is on; assuming you're on Windows, it'll be a COM port (e.g. COM4)
+- For this example, we'll assume you're on Windows and that your COM port is COM4 - please check your specific config
+- We're also assuming that esptool is in the same folder as spacebadge.bin
+- esptool --chip esp32-s3 --port COM4 --baud 921600 write_flash 0 spacebadge.bin 
+- Note that depending on how esptool is installed your syntax may be slightly different (e.g. 'python esptool.py' or similar)
+- The flash process will take several minutes
 # Hardware Bill of Materials (BOM)
 This is where I got my materials from. No endorsement of any particular vendor expressed/implied (though these particular vendors treated me VERY well).
 - Waveshare ESP32-S3 (SKU 27690) [link](https://www.waveshare.com/esp32-s3-touch-lcd-2.8.htm?sku=27690)
