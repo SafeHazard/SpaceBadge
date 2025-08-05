@@ -155,6 +155,7 @@ If you plan to use any portion of this project, please check applicable laws to 
 # Known Issues
 - Booting is a tad slow, but I did it that way to make the UI much more responsive (frames/second vs seconds/frame)
 - It can take 30-ish seconds for game hosts and clients to "see" each other
+- The 'All' graph was not scaled properly on the 'Mission' tab on the v.1.0 release. That has been corrected; please flash or build & flash the new version for the UI patch
 - Audio may cut out; a reboot tends to fix that
 - There may be occasional issues that cause a board to reboot
 - If you find yourself in a 'boot loop' situation:
