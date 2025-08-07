@@ -119,13 +119,13 @@ Tap in the direction you want to move; there are 3 'lanes' to choose from.
 # Flashing
 You can build from source or you can use the precompiled binaries posted here.
 There are a lot of tutorials out there on how to use esptool, so this section is meant to get you started.
-- Get esptool from either [here](https://github.com/espressif/esptool) or install it as a part of Arduino IDE [here](https://www.arduino.cc/en/software)
+- Get esptool from either the Binaries folder or GitHub [here](https://github.com/espressif/esptool/releases). The syntax below is for v.4.5.1
 - Download your binary of choice from this repo (should be ~16 MB)
 - Connect your board to your PC
 - Figure out what port your board is on; assuming you're on Windows, it'll be a COM port (e.g. COM4)
 - For this example, we'll assume you're on Windows and that your COM port is COM4 - please check your specific config
 - We're also assuming that esptool is in the same folder as spacebadge.bin
-- `esptool --chip esp32-s3 --port COM4 --baud 921600 write_flash 0 spacebadge.bin`
+- `esptool --chip esp32s3 --port COM4 --baud 921600 write_flash 0 spacebadge.bin`
 - Note that depending on how esptool is installed your syntax may be slightly different (e.g. 'python esptool.py' or similar)
 - The flash process will take several minutes
 # Hardware Bill of Materials (BOM)
