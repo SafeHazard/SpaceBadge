@@ -1,0 +1,5 @@
+board_manager:
+    additional_urls: []
+
+library:
+    enable_unsafe_install: true

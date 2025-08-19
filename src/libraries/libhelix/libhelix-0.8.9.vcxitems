@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding ="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup Label="Globals" >
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{ec37ec16-8655-4696-a7bf-4c301d49481f}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\aacdec.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\aactabs.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\bitstream.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\buffers.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\dct4.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\decelmnt.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\dequant.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\fft.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\filefmt.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\huffman.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\hufftabs.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\imdct.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\noiseless.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\pns.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbr.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrfft.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrfreq.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrhfadj.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrhfgen.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrhuff.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrimdct.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrmath.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrqmf.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrside.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbrtabs.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\stproc.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\tns.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-aac\trigtabs.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\bitstream.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\buffers.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\dct32.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\dequant.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\dqchan.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\huffman.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\hufftabs.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\imdct.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\mp3dec.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\mp3tabs.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\polyphase.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\scalfact.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\stproc.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\subband.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\trigtabs.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\utils\helix_memory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\AACDecoderHelix.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\CommonHelix.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\ConfigHelix.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\MP3DecoderHelix.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-aac\aaccommon.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-aac\aacdec.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-aac\assembly.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-aac\bitstream.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-aac\coder.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-aac\sbr.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-aac\statname.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\assembly.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\coder.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\mp3common.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\mp3dec.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\mpadecobjfixpt.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\statname.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\Allocator.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\Buffers.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\helix_log.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\helix_log_idf.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\helix_log_std.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\helix_memory.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\helix_pgm.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\utils\Vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)CMakeLists.txt" />
+<Text Include="$(MSBuildThisFileDirectory)library.properties" />
+<Text Include="$(MSBuildThisFileDirectory)License.txt" />
+<Text Include="$(MSBuildThisFileDirectory)src\libhelix-aac\readme.txt" />
+<Text Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\LICENSE.txt" />
+<Text Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\RCSL.txt" />
+<Text Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\readme.txt" />
+<Text Include="$(MSBuildThisFileDirectory)src\libhelix-mp3\RPSL.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory).gitignore" />
+<None Include="$(MSBuildThisFileDirectory)Doxyfile" />
+<None Include="$(MSBuildThisFileDirectory)README.md" />
+  </ItemGroup>
+</Project>

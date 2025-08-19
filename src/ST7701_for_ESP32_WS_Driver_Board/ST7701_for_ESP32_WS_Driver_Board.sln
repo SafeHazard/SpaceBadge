@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ST7701_for_ESP32_WS_Driver_Board", "ST7701_for_ESP32_WS_Driver_Board.vcxproj", "{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lvgl-9.2.0", "..\libraries\lvgl\lvgl-9.2.0.vcxitems", "{087132C6-1A4F-48D8-96EE-17A84FAA7F1F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Painless_Mesh-1.5.4", "..\libraries\Painless_Mesh\Painless_Mesh-1.5.4.vcxitems", "{AB7F9AA0-FC95-4781-9E90-67AAC71679CF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audio-tools-1.1.2", "..\libraries\audio-tools\audio-tools-1.1.2.vcxitems", "{04F94BC6-EE2D-40C4-805C-B8F2EAF8E628}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libhelix-0.8.9", "..\libraries\libhelix\libhelix-0.8.9.vcxitems", "{EC37EC16-8655-4696-A7BF-4C301D49481F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TaskScheduler-3.8.5", "..\libraries\TaskScheduler\TaskScheduler-3.8.5.vcxitems", "{EF7761B5-D254-4431-ADA5-B7F5C99CA286}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Async_TCP-3.4.5", "..\libraries\Async_TCP\Async_TCP-3.4.5.vcxitems", "{F32181D5-1B37-4365-9DEF-133F64AFDA9F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lz4-1.10.0-1.10.0", "..\libraries\lz4-1.10.0\lz4-1.10.0-1.10.0.vcxitems", "{FD1436BD-7509-4509-8AEF-4DB0C0488B49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Debug|ARM.Build.0 = Debug|ARM
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Debug|ARM64.Build.0 = Debug|ARM64
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Release|ARM.ActiveCfg = Release|ARM
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Release|ARM.Build.0 = Release|ARM
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Release|ARM.Deploy.0 = Release|ARM
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Release|ARM64.ActiveCfg = Release|ARM64
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Release|ARM64.Build.0 = Release|ARM64
+		{3AFF24E9-C85C-A82A-E1BA-6C6D2ECF9A1E}.Release|ARM64.Deploy.0 = Release|ARM64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31F49977-BEB0-4C4C-8D2D-4B3C413BBEB8}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\libraries\audio-tools\audio-tools-1.1.2.vcxitems*{04f94bc6-ee2d-40c4-805c-b8f2eaf8e628}*SharedItemsImports = 9
+		..\libraries\lvgl\lvgl-9.2.0.vcxitems*{087132c6-1a4f-48d8-96ee-17a84faa7f1f}*SharedItemsImports = 9
+		..\libraries\Async_TCP\Async_TCP-3.4.5.vcxitems*{3aff24e9-c85c-a82a-e1ba-6c6d2ecf9a1e}*SharedItemsImports = 4
+		..\libraries\audio-tools\audio-tools-1.1.2.vcxitems*{3aff24e9-c85c-a82a-e1ba-6c6d2ecf9a1e}*SharedItemsImports = 4
+		..\libraries\libhelix\libhelix-0.8.9.vcxitems*{3aff24e9-c85c-a82a-e1ba-6c6d2ecf9a1e}*SharedItemsImports = 4
+		..\libraries\lvgl\lvgl-9.2.0.vcxitems*{3aff24e9-c85c-a82a-e1ba-6c6d2ecf9a1e}*SharedItemsImports = 4
+		..\libraries\lz4-1.10.0\lz4-1.10.0-1.10.0.vcxitems*{3aff24e9-c85c-a82a-e1ba-6c6d2ecf9a1e}*SharedItemsImports = 4
+		..\libraries\Painless_Mesh\Painless_Mesh-1.5.4.vcxitems*{3aff24e9-c85c-a82a-e1ba-6c6d2ecf9a1e}*SharedItemsImports = 4
+		..\libraries\TaskScheduler\TaskScheduler-3.8.5.vcxitems*{3aff24e9-c85c-a82a-e1ba-6c6d2ecf9a1e}*SharedItemsImports = 4
+		..\libraries\Painless_Mesh\Painless_Mesh-1.5.4.vcxitems*{ab7f9aa0-fc95-4781-9e90-67aac71679cf}*SharedItemsImports = 9
+		..\libraries\libhelix\libhelix-0.8.9.vcxitems*{ec37ec16-8655-4696-a7bf-4c301d49481f}*SharedItemsImports = 9
+		..\libraries\TaskScheduler\TaskScheduler-3.8.5.vcxitems*{ef7761b5-d254-4431-ada5-b7f5c99ca286}*SharedItemsImports = 9
+		..\libraries\Async_TCP\Async_TCP-3.4.5.vcxitems*{f32181d5-1b37-4365-9def-133f64afda9f}*SharedItemsImports = 9
+		..\libraries\lz4-1.10.0\lz4-1.10.0-1.10.0.vcxitems*{fd1436bd-7509-4509-8aef-4db0c0488b49}*SharedItemsImports = 9
+	EndGlobalSection
+EndGlobal

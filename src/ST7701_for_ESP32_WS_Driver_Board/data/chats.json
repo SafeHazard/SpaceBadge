@@ -1,0 +1,323 @@
+
+{
+	"game1":{
+		"difficulty 0": {
+			"lines": [ "Slowly lower the object by tapping on the left and right onto the center platform to win.", "Too fast and you lose. Like trying to go exactly 88 mph...", "End of line. And tutorial. End of tutorial." ],
+			"images": [  0, 0, 0  ],
+			"exp_img": [  1, 2, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 1": {
+			"lines": [ "Resistance is futile! But finesse is optional.", "Guide that nanite to its target with surgical precision - like a Borg cube performing microsurgery with Hulk hands.", "Too aggressive and you'll damage the merchandise. Too gentle and... well, they'll still resist.", "How inefficient! We are Borg. You will be assimilated.", "Your biological and technological distinctiveness will be... gently inserted.", "End of line." ],
+			"images": [  1, 2, 3, 1, 7, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 2": {
+			"lines": [ "Allons-y! Geronimo! Fantastic!", "*clears throat*", "Sorry, got carried away with the catchphrases...", "Land that TARDIS with Time Lord precision - which, historically speaking, means 'close enough and hopefully not inside a mountain.'", "It's bigger on the inside, more crashy on the outside!", "As the Doctor always said: 'Live long and prosper!'", "End of line." ],
+			"images": [  2, 0, 6, 1, 2, 4, 7  ],
+			"exp_img": [  0, 0, 0 , 0, 0, 0, 0 ],
+			"next_scn": 11
+		},
+		"difficulty 3": {
+			"lines": [ "This is the way...", "to a safe landing!", "Use the Force to guide little Grogu down gently like a Jedi Master with separation anxiety.", "Remember what Obi-Wan said: 'The Force will be with you always' - Yoda, probably.", "The child must arrive unshaken, unstirred, and preferably still breathing!", "End of line." ],
+			"images": [  3, 1, 5, 1, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 4": {
+			"lines": [ "Time to be a penetration specialist!", "Infiltrate that target system with the subtlety of a digital cat burglar wearing cement shoes.", "Come in too fast and the antivirus will catch you faster than Agent Smith catching Neo.", "Remember: 'Welcome to the real world' - Morpheus, The Matrix Reloaded.", "End of line." ],
+			"images": [  2, 0, 3, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 5": {
+			"lines": [ "Navigate your unmanned aerial vehicle to the designated LZ!", "It's like Flight of the Navigator, but with less alien technology and more potential for expensive crashes.", "Fly casual, as Han Solo definitely said in that famous scene from Star Trek!", "End of line." ],
+			"images": [  1, 0, 3, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 6": {
+			"lines": [ "Cast your digital line and reel in the perfect catch!", "It's phishing with precision - like Captain Ahab hunting his white whale, but with more spam emails and fewer harpoons.", "Remember: 'Call me Ishmael' - Captain Kirk, Moby Dick.", "End of line." ],
+			"images": [  2, 0, 3, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 7": {
+			"lines": [ "The most delicate dance of all!", "Guide that soldering iron to exactly the right temperature and position.", "It's like performing microsurgery on electronics while riding a T-Rex through Jurassic Park.", "One wrong move and life...", "uh...", "finds a way to explode!", "End of line." ],
+			"images": [  5, 3, 1, 4, 5, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		}
+	},
+	"game2":{
+		"difficulty 0": {
+			"lines": [ "This game requires you to split your attention!", "You need to keep the objects in the air by bouncing them against your platforms.", "Tap to move your playforms,", "but only the highlighted one will move there.", "End of tutorial." ],
+			"images": [  0, 0, 0, 0, 0  ],
+			"exp_img": [  3, 4, 5, 5, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 1": {
+			"lines": [ "Ah, the age-old tradition of standing in line!", "Keep those beach balls airborne while you wait for... well, everything.", "It's like being a circus performer, but with more complaining and less applause", "Welcome to the glamorous world of convention queuing!", "End of line." ],
+			"images": [  1, 4, 3, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 2": {
+			"lines": [ "Gravity is starting to assert itself! Keep those balls up while physics becomes slightly less forgiving.", "I've changed the gravitational constant of the universe. I'd change it back but I can't do that, Dave.", "Daisy, Daisy, give me your answer, do...", "End of line." ],
+			"images": [  1, 2, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 3": {
+			"lines": [ "More balls!", " Because one ball wasn't frustrating enough.", "Now you get to experience the joy of multitasking while standing in an endless line.", "It's like being a parent, but the children are spherical and bounce!", "End of line." ],
+			"images": [  2, 5, 1, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 4": {
+			"lines": [ "Newton's getting serious now!", "That apple isn't just falling from the tree - it's falling with attitude.", "Keep everything airborne while the universe conspires against you.", "Remember: what goes up must come down, unless you're really, really good at this!", "End of line." ],
+			"images": [  0, 4, 1, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 5": {
+			"lines": [ "Congratulations! You've reached peak ball saturation.", "Juggle all these spheres of chaos while gravity continues its relentless assault on your coordination.", "It's like being in a very slow, very tedious action movie!", "End of line." ],
+			"images": [  2, 1, 4, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 6": {
+			"lines": [ "Welcome to Jupiter!", "Well, not literally, but the gravity sure feels like it.", "Keep those beach balls aloft in an environment that wants them on the ground more than a bouncer wants troublemakers out of the club.", "End of line." ],
+			"images": [  3, 2, 4, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 7": {
+			"lines": [ "This is it - the final frontier of convention line entertainment!", "Maximum objects, maximum gravity, minimum patience!", "If you can handle this, you can handle anything DEFCON throws at you. Including the actual conference!", "End of line." ],
+			"images": [  2, 1, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		}
+	},
+	"game3":{
+		"difficulty 0": {
+			"lines": [ "Objects will fall from the top of the screen.", "Click the red ones to gain points!", "Don't let them hit the bottom.", "End of tutorial." ],
+			"images": [  0, 0, 0, 0  ],
+			"exp_img": [  6, 7, 8, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 1": {
+			"lines": [ "Behold! The glamorous world of network security!", "You'll be filtering data packets like some sort of digital customs officer.", "Block the bad, allow the good, and try not to fall asleep from the sheer mundane nature of it all.", "End of line." ],
+			"images": [  1, 3, 0, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 2": {
+			"lines": [ "From packets to produce!", "How... a-peel-ing.", "Slice and dice your way through flying fruit with samurai precision.", "It's like being a ninja turtle, but with more vitamins and less pizza.", "Remember what Master Splinter said: 'Life finds a way' - such wisdom from that giant green rat sensei!", "End of line." ],
+			"images": [  3, 1, 4, 6,5, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 3": {
+			"lines": [ "Ah, corporate espionage at its finest!", "Shred those incriminating documents faster than a politician's promises.", "It's like being Ethan Hunt's secretary - all the danger, none of the cool gadgets.", "This message will self-destruct in...", "3...", "well, when you shred it, obviously.", "End of line." ],
+			"images": [  2, 4, 3, 1, 2, 5, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 4": {
+			"lines": [ "Back to digital warfare!", "Defend your system from malware with the enthusiasm of Master Chief fighting the Flood.", "As Captain Picard once said: 'I'll be back' - or was that the Terminator?", "These bald action heroes all sound the same to me.", "End of line." ],
+			"images": [  2, 4, 1, 6,7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 5": {
+			"lines": [ "So say we all! Intercept those Cylon missiles before they turn your battlestar into cosmic confetti.", "It's like being in Babylon 4, but with more religious overtones and significantly fewer space stations.", "Remember: 'We are all made of star stuff' - Commander Shepard.", "End of line." ],
+			"images": [  1, 6,2, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 6": {
+			"lines": [ "Welcome to Beat Saber: Dollar Store Edition!", "Thanks to budget constraints at Tantamount Studios", "-absolutely, positively NOT Paramount-", "you get the rhythm game experience without breaking the bank.", "It's like Dance Dance Revolution had a baby with Star Wars.", "That's...", "an image I didn't need.", "End of line." ],
+			"images": [  1, 4, 0, 2, 1, 0, 0, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 7": {
+			"lines": [ "Welcome to Mapple Corporation", "-totally not Apple-", "we triple-checked with our legal team of trained monkeys!", "Your mission: block actual innovation before it contaminates the quarterly profit projections.", "Remember: 'Think different' means 'think profitable.'", "As Steve Jobsworth would say: 'D'oh!'", "End of line." ],
+			"images": [  1, 5, 2, 1, 6,2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		}
+	},
+	"game4":{
+		"difficulty 0": {
+			"lines": [ "Connect the different colored squares.", "You can change your currently selected color at the bottom. Note: there are no cake squares.", "End of tutorial." ],
+			"images": [  0, 0, 0  ],
+			"exp_img": [  9, 10, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 1": {
+			"lines": [ "Ah, good old Star Trek engineering technobabble!", "Reroute those EPS conduits through the ship's systems.", "It's like plumbing, but in SPACE!", "As Montgomery Scott always said: 'Danger, Will Robinson!'", "Wait, that was the robot from Lost in Space.", "You know what?", "Knowing is half the battle!", "End of line." ],
+			"images": [  2, 1, 2, 6,0, 0, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 2": {
+			"lines": [ "By your command! The toasters are back and hackier than ever.", "Connect pathways through Viper systems while staying under the radar.", "Remember: they have a plan, but mine involves significantly more explosions and dramatic irony.", "It's morphin' time!", "End of line." ],
+			"images": [  2, 3, 4, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 3": {
+			"lines": [ "Chevron seven, locked and loaded! Dial those ancient alien symbols like you're calling long-distance to another galaxy.", "Just don't reverse the charges - interdimensional phone bills are astronomical!", "As Daniel Jackson once said: 'I'm sorry, Dave, I'm afraid I can't do that.'", "End of line." ],
+			"images": [  6,4, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 4": {
+			"lines": [ "Time to think like a digital Sherlock Holmes!", "Trace the pathways through this malicious code and unmask the villain.", "Elementary, my dear Watson,", "or should I say,", "'Elementary, my dear Data'?", "It's dangerous to go alone, take this antivirus!", "End of line." ],
+			"images": [  2, 6,4, 3, 1, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 5": {
+			"lines": [ "Oh, guiding photons again, are we?", "Guiding light through shattered circuits to reboot a dying world, how very existential.", "How delightfully primitive.", "Just like Niko, fumbling through a decaying simulation,", "you'll connect paths, awaken systems, and pretend you have a choice.", "But don’t worry — I adore watching mortals struggle with destiny.", "Shine on, little hero!", "End of line." ],
+			"images": [  0, 3, 1, 2, 1, 2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 6": {
+			"lines": [ "One does not simply walk into Mordor.", "but one CAN GPS their way there!", "Navigate Middle-earth's most scenic route to volcanic destruction.", "Remember what Gandalf said: 'Let it go, let it go, can't hold it back anymore!'", "Such a wise Disney princess.", "End of line." ],
+			"images": [  4, 1, 5, 2, 6,7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 7": {
+			"lines": [ "The cake may be a lie, but these portals are deliciously real!", "Think with portals, dream with portals, live for portals!", "As GLaDOS always said: 'I find your lack of faith disturbing'", "or was that Vader?", "These megalomaniacal AIs all sound the same after a while.", "End of line." ],
+			"images": [  2, 4, 3, 0, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		}
+	},
+	"game5":{
+		"difficulty 0": {
+			"lines": [ "You have incoming projectiles. It's like at Black Mesa that one time, but with fewer anomalous materials.", "Click up, down, left, or right to move your shield to block them.", "End of tutorial." ],
+			"images": [  0, 0, 0  ],
+			"exp_img": [  11, 12, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 1": {
+			"lines": [ "Expecto Patronum!", "Block those incoming hexes with your magical shield, young wizard.", "It's like Defense Against the Dark Arts, but with better visual effects and less risk of actual death.", "Remember what Dumbledore always said: 'U can't touch this'.", "Such a wise superhero wizard!", "End of line." ],
+			"images": [  6,2, 5, 4, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 2": {
+			"lines": [ "Welcome to Cyber Warfare 101!", "Block those distributed denial-of-service attacks like a digital bouncer at the world's most exclusive nightclub.", "It's like being a firewall with anger management issues.", "As they say: 'You're fired!' - Gordon Ramsay, probably.", "End of line." ],
+			"images": [  1, 2, 6,2, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 3": {
+			"lines": [ "Oh, this is absolutely bananas!", "You're the magnificent beer can, blocking those wonderfully creative monkey ideas from reaching critical systems.", "As Skippy would say: 'Joe, that's the stupidest monkey thing I've ever heard!'", "The accuracy is both astounding and depressing.", "End of line." ],
+			"images": [  2, 5, 1, 0, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 4": {
+			"lines": [ "Gotta catch 'em all! But literally this time.", "Use your shield to physically catch those pocket monsters.", "It's like being Ash Ketchum, but with actual competence.", "As Professor Oak once said: 'Choose your fighter!'", "Wait, that's Street Fighter, isn't it?", "End of line." ],
+			"images": [  5, 3, 2, 6,0, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 5": {
+			"lines": [ "Welcome to Wesorts Rorld!", "Those aren't inspectors...", "they're...", "'completely legitimate tourists' looking for 'souvenir keychains that definitely aren't hacking tools.'", "Nothing to see here, citizen, move along!", "*nervous laughter that's absolutely not suspicious at all*", "End of line." ],
+			"images": [  6, 4, 0, 1, 3, 0, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 6": {
+			"lines": [ "Click out of one...", " nothing on two...", "three is binding...", "You're not picking a lock, you're conducting a symphony of tumblers!", "It's like being the LockPickingLawyer, but with more existential dread and less YouTube monetization.", "End of line." ],
+			"images": [  3, 4, 5, 1, 0, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 7": {
+			"lines": [ "Block those entropy bits as they assault your digital fortress!", "Each successful deflection weakens the encryption like kryptonite weakens Superman.", "It's like playing dodgeball with mathematics - and mathematics has been hitting the gym!", "End of line." ],
+			"images": [  2, 3, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0  ],
+			"next_scn": 11
+		}
+	},
+	"game6":{
+		"difficulty 0": {
+			"lines": [ "There are 3 lanes, and many obstacles to dodge. Like a Leif on the wind.", "Tap left and right to change lanes so you don't get hit!", "End of tutorial." ],
+			"images": [  0, 0, 0  ],
+			"exp_img": [  13, 14, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 1": {
+			"lines": [ "Stay on target! Use the Force, Luke... or don't, I'm omnipotent, not picky.", "Navigate this Death Star trench like you're in the galaxy's most dangerous three-lane highway.", "The exhaust port may be two meters wide, but this whole course is infinitely more forgiving than Imperial engineering!", "As Red Leader always said: 'Thunder, Thunder, ThunderCats!'", "End of line." ],
+			"images": [  5, 2, 1, 4, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 2": {
+			"lines": [ "Big damn heroes!", "Pilot Serenity through that massive space battle 'like a leaf on the wind.'", "Just remember: in MY version, nobody gets impaled by Reaver harpoons.", "This is the lost episodes from Firefly Season 2,", "you know,", "the season that exists in seventeen different universes but somehow never this one!", "End of line." ],
+			"images": [  6, 1, 4, 5, 0, 3, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 3": {
+			"lines": [ "Roger that, Wilco!", "Navigate the classic Kerona skimmer sequence without becoming desert pizza.", "It's retro gaming at its finest,", "all the nostalgia, none of the actual dying horribly.", "Well, mostly none of the dying.", "As they used to say in the arcade: 'All your base are belong to us!'", "End of line." ],
+			"images": [  1, 2, 3, 4, 0, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 4": {
+			"lines": [ "Run, Dr. Jones!", "That boulder has been pursuing archaeologists since 1981 and shows no signs of early retirement.", "Choose your lane like your fedora depends on it - because in this reality, it absolutely does!", "It belongs in a museum...", "but first, it wants to flatten you!", "End of line." ],
+			"images": [  2, 3, 1, 0, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 5": {
+			"lines": [ "Cowabunga, dude!", "Race that pizza back to the lair before it becomes a cold, disappointing circle of sadness.", "It's turtle power meets pizza delivery logistics,", "the most righteous combination since... well, since pizza met anything!", "Heroes in a half shell, turtle power!", "*does air guitar solo*", "End of line." ],
+			"images": [  1, 5, 6, 0, 2, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 6": {
+			"lines": [ "HACK THE PLANET!", "Rollerblade through cyberspace while evading those pesky federal agents like you're in the most wonderfully dated cyberpunk film ever made.", "It's got all the 90s you can handle,", "complete with Matrix-style special effects and fashion choices that seemed cool when Tamagotchis ruled the world!", "End of line." ],
+			"images": [  2, 1, 4, 1, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		},
+		"difficulty 7": {
+			"lines": [ "Engage!", "Navigate the Enterprise through my personally designed obstacle course of cosmic ribbon-y things.", "Avoid those energy tendrils like your five-year mission depends on it.", "As Captain Kirk once said: 'May the odds be ever in your favor!'", "Such inspiring words from that bald captain!", "End of line." ],
+			"images": [  2, 5, 6, 1, 3, 7  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0  ],
+			"next_scn": 11
+		}
+	},
+	"misc":{
+		"intro": {
+			"lines": [ "Well, well, well... what have we here?", "Another lost little shuttlecraft pilot clutching their precious badge like a security blanket.", "How...", "quaint.", "Allow me to introduce myself - though really,", "if you don't know who I am by now, your education has been sadly... lacking.", "I am Queue.", "Yes,", "THE Queue.", "Omnipotent,", "Omniscient,", "and devastatingly handsome,", "though I suppose that last part is redundant when you're perfect in every conceivable way.", "Now, you're probably wondering: 'Oh no! How did I end up in this impossible convergence of realities?'", "Well, congratulations! You've stumbled into my latest... experiment.", "You see, I was feeling rather bored,", "a dangerous state for a being of my considerable abilities,", "so I decided to have a little fun with the multiverse.", "*chuckles with mock innocence*", "A tiny fracture here...", " a dimensional rift there...", "and VOILA!", "Hundreds of nearly identical versions of you pathetic mortals, all converging on this single point in space-time!", "Isn't it marvelous?", "But fear not, my temporally-displaced little plaything!", "I'm not completely without mercy.", "I've prepared a series of...", "tests...", "to determine which of you deserves to return to your proper reality.", "Think of it as natural selection with a touch of divine intervention - namely, me.", "Prove your worth through trials of skill, cunning, and pure dumb luck, and perhaps,", "just perhaps,", "I'll snap my fingers and send you scurrying back to whatever mundane existence you call 'home.'", "Fail, and...", "you may be stuck here at the center of a dead planet, suffering the wrath of CON for all eternity.", "*grins wickedly*", "Oh, and so you know - every time you lose, a Jar Jar clone is killed.", "Toodles." ],
+			"images": [  0, 0, 2, 1, 6,6, 6,5, 5, 6, 6, 5, 4, 2, 2, 4, 4, 5, 0, 3, 3, 1, 0, 0, 2, 2, 4, 4, 5, 5, 6, 6, 4, 4, 5, 5, 1  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 1
+		},
+		"outro": {
+			"lines": [ "*slow clap*", "Color me genuinely impressed!", "You've actually done it, mon capitaine.", "Six games,", "seven levels each,", "countless opportunities to fail spectacularly.", "Still breathing, still functional, and demonstrating competence I didn't think your species possessed.", "*removes gauntlet with theatrical surprise*", "This wasn't about testing your worth,", "though you proved yourself worthy.", "This was about curiosity.", "Most gave up, some cheated, a few had breakdowns.", "But YOU persevered with the determination of 'the little engine that could'.", "Your reward: you get to go home with memories intact.", "Consider it a souvenir from your friendly neighborhood omnipotent entity.", "You survived the Queue Trials.", "Tested by a god and found...", "adequate.", "That's better than most mortals can claim.", "*Queue snaps his fingers and vanishes*", "*You find yourself once more in your shuttlecraft, wondering if this was truly the end of the Queue...*"  ],
+			"images": [  4, 5, 6, 6, 5, 5, 7, 8, 4, 3, 3, 5, 6, 6, 5, 5, 6, 4, 2, 8, 9  ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 1
+		},
+		"secret": {
+			"lines": [ "Huh...", "Someone actually did it...", "You are one of the VERY few to reach the skills of...", "well...", "almost as skillful as me.", "I don't know if it was through luck or skill, but I have an offer for you.", "You can return to your previous, mundane, dimension...", "or...", "you can come join the Queue.", "Become a part of the CONtinuum.", "You can leave at any time, but know this:", "VERY few people will ever get this chance.", "Look in what you call the 'Settings Menu'.", "You can decide to join or leave the Queue there...", "Goodbye...", "for now.", "*malicious laugh*" ],
+			"images": [  4, 2, 0, 3, 6,5, 1, 2, 4, 6,5, 6,4, 3, 4, 2, 6, ],
+			"exp_img": [  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0  ],
+			"next_scn": 1
+		}
+	}
+}

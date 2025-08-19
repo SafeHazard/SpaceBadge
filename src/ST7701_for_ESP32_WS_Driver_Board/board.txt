@@ -1,0 +1,4 @@
+# ST7701_for_ESP32_WS_Driver_Board build property overrides
+#
+#pragma diag_suppress 351
+

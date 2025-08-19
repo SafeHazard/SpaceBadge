@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding ="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup Label="Globals" >
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{fd1436bd-7509-4509-8aef-4db0c0488b49}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\lz4.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\lz4file.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\lz4frame.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\lz4hc.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\xxhash.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\lz4.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\lz4file.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\lz4frame.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\lz4frame_static.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\lz4hc.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\xxhash.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)library.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory).cirrus.yml" />
+<None Include="$(MSBuildThisFileDirectory).clang-format" />
+<None Include="$(MSBuildThisFileDirectory).gitattributes" />
+<None Include="$(MSBuildThisFileDirectory).gitignore" />
+<None Include="$(MSBuildThisFileDirectory)appveyor.yml" />
+<None Include="$(MSBuildThisFileDirectory)CODING_STYLE" />
+<None Include="$(MSBuildThisFileDirectory)INSTALL" />
+<None Include="$(MSBuildThisFileDirectory)library.json" />
+<None Include="$(MSBuildThisFileDirectory)LICENSE" />
+<None Include="$(MSBuildThisFileDirectory)Makefile" />
+<None Include="$(MSBuildThisFileDirectory)Makefile.inc" />
+<None Include="$(MSBuildThisFileDirectory)NEWS" />
+<None Include="$(MSBuildThisFileDirectory)README.md" />
+<None Include="$(MSBuildThisFileDirectory)SECURITY.md" />
+<None Include="$(MSBuildThisFileDirectory)src\liblz4-dll.rc.in" />
+<None Include="$(MSBuildThisFileDirectory)src\liblz4.pc.in" />
+<None Include="$(MSBuildThisFileDirectory)src\LICENSE" />
+<None Include="$(MSBuildThisFileDirectory)src\Makefile" />
+<None Include="$(MSBuildThisFileDirectory)src\README.md" />
+<None Include="$(MSBuildThisFileDirectory)src\dll\example\fullbench-dll.sln" />
+<None Include="$(MSBuildThisFileDirectory)src\dll\example\fullbench-dll.vcxproj" />
+<None Include="$(MSBuildThisFileDirectory)src\dll\example\Makefile" />
+<None Include="$(MSBuildThisFileDirectory)src\dll\example\README.md" />
+  </ItemGroup>
+</Project>

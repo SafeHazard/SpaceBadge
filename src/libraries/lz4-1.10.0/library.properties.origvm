@@ -1,0 +1,7 @@
+name=LZ4
+architectures=esp8266,esp32
+author=LZ4
+paragraph=Extremely fast lossless compression
+sentence=Extremely fast lossless compression
+url=https://github.com/lz4/lz4
+version=1.10.0

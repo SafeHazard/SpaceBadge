@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding ="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup Label="Globals" >
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{fd35f374-a4fa-4831-889b-e5f86c5675c1}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SensorWireHelper.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\TouchDrvInterface.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhi3.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhi3_multi_tap.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhy2.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_bsec.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_head_tracker.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_hif.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_klio.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_parse.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_swim.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\BoschParse.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\BMM150\bmm150.c" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\common\bosch_interfaces.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\bosch\common\common.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\platform\esp_arduino.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\touch\TouchClassCST226.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\touch\TouchClassCST816.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\ExtensionIOXL9555.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorBHI260AP.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorBMA423.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorBMM150.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorCM32181.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorDRV2605.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorLib.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorLTR553.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorPCF85063.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorPCF8563.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorQMC6310.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorQMI8658.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorRTC.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\SensorWireHelper.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\TouchDrvCHSC5816.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\TouchDrvCSTXXX.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\TouchDrvFT6X36.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\TouchDrvGT911.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\TouchDrvInterface.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhi3.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhi3_defs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhi3_multi_tap.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhi3_multi_tap_defs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_bsec.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_defs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_head_tracker.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_head_tracker_defs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_hif.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_klio.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_klio_defs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_parse.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_swim.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\bhy2_swim_defs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\BoschParse.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\SensorBhy2Define.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\BMM150\bmm150.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\BMM150\bmm150_defs.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\common\bosch_interfaces.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\common\common.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\bosch\firmware\BHI260AP.fw.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\platform\esp_arduino.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\BMA423Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\CHSC5816Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\CM32181Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\CSTxxxConstants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\DRV2605Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\FT6X36Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\GT911Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\LTR533Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\MPU6886Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\PCF85063Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\PCF8563Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\QMC6310Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\QMI8658Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\REG\XL9555Constants.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\touch\TouchClassCST226.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\touch\TouchClassCST816.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)CMakeLists.txt" />
+<Text Include="$(MSBuildThisFileDirectory)keywords.txt" />
+<Text Include="$(MSBuildThisFileDirectory)library.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Kconfig" />
+<None Include="$(MSBuildThisFileDirectory)library.json" />
+<None Include="$(MSBuildThisFileDirectory)LICENSE" />
+<None Include="$(MSBuildThisFileDirectory)platformio.ini" />
+<None Include="$(MSBuildThisFileDirectory)README.md" />
+<None Include="$(MSBuildThisFileDirectory)src\ExtensionSPI.tpp" />
+<None Include="$(MSBuildThisFileDirectory)src\SensorCommon.tpp" />
+  </ItemGroup>
+</Project>

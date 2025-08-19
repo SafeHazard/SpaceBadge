@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{24d5cdb9-a2c1-472c-a997-cd969f3ceec8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ST7701_for_ESP32_WS_Driver_Board.ino" />
+    <ClCompile Include="Display_Driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Display_Driver.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Display_ST7789.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Display_ST7789.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PWR_Key.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PWR_Key.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Touch_CST328.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Touch_CST328.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\images.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\screens.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\styles.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_font_lcars_14.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_font_lcars_16.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_font_lcars_20.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_font_lcars_60.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___icons.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___main_divider.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___subdivider.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="custom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="json.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="avatar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="avatar_unlocks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="contacts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="info.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mission.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="session.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="profile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mp3s.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pngs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio_PCM5101.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="badgeMode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_16x16.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BAT_Driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="memory_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___wi_fi_disabled.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___wi_fi_enabled.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___badge_disabled.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___badge_enabled.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___battery_000.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___battery_025.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___battery_050.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___battery_075.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui_element___battery_100.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui___not_ready.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui___ready.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="flavor_animations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="convos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_game1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_game2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_game3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_game4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_game5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="g_game6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lightweight_tasks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="multiplayer_overlay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_font_lcars_12.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_stars.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui___docs_qr_code.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\ui_image_ui___shuttle.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="__vm\.ST7701_for_ESP32_WS_Driver_Board.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\actions.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\fonts.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\images.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\screens.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\structs.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\styles.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\ui.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\vars.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="custom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="global.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="memory_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="json.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="avatar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="avatar_unlocks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="contacts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mission.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pngs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mp3s.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio_PCM5101.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="badgeMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BAT_Driver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flavor_animations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="convos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game_parent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g_game1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g_game2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g_game3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g_game4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g_game5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="g_game6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lightweight_tasks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="multiplayer_overlay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="board.txt" />
+  </ItemGroup>
+</Project>

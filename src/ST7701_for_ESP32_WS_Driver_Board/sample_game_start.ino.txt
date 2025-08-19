@@ -1,0 +1,225 @@
+#pragma once
+#include <Arduino.h>
+//#include "LVGL_Driver.h"
+#include "Display_Driver.h"
+#include "game_parent.h"
+#include "g_game1.h"
+#include "g_game2.h"
+#include "g_game3.h"
+#include "g_game4.h"
+#include "g_game5.h"
+#include "g_game6.h"
+#include "g_game7.h"
+#include "multiplayer_overlay.h"
+
+
+
+
+
+
+
+
+
+/* ---------------------- READ THIS ----------------------
+To set up each game, uncomment its include up top. Then go through and change every
+g_gamex to the number of your choice. All the games use the same front interface
+so just change 2 places, the init and the variable type (line 77 and 141)
+
+   ---------------------- README OVER ----------------------*/
+
+
+
+
+
+
+
+lv_obj_t* gbtns[7];
+lv_obj_t* quitbtn;
+
+game_parent* game = nullptr;
+
+// Global components
+unsigned long last_tick = 0;
+extern lv_obj_t* buttons[BUTTON_COUNT];
+extern WanderCtx ctxs[BUTTON_COUNT];
+
+int txp = 0;
+void QuitGame(lv_event_t *e)
+{
+    printf("\n\nPRE-GAME VALUE: %d\n", txp);
+    delete game;
+    game = nullptr;
+    printf("POST-GAME VALUE - %d\n", txp);
+
+    lv_obj_add_flag(quitbtn, LV_OBJ_FLAG_HIDDEN);
+    for(int i = 0; i < 7; i++)
+    {
+        lv_obj_clear_flag(gbtns[i], LV_OBJ_FLAG_HIDDEN);
+    }
+}
+
+void StartGame()
+{
+    printf("%d\n", txp);
+    printf("%d\n", txp);
+}
+
+// game_parent* game = nullptr;
+void CreateGame(lv_event_t *e)
+{
+    int gameIdx = *(int*)lv_event_get_user_data(e);
+    
+    // printf("\n\nPre game CREATION:\nFree   RAM: %u bytes\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+    // printf("Free PSRAM: %u bytes\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+    txp = 0;
+    if(game == nullptr)
+    {
+        switch(gameIdx)
+        {
+            case 1: game = new game1::g_game1(&txp); break;
+            case 2: game = new game2::g_game2(&txp); break;
+            case 3: game = new game3::g_game3(&txp); break;
+            case 4: game = new game4::g_game4(&txp); break;
+            case 5: game = new game5::g_game5(&txp); break;
+            case 6: game = new game6::g_game6(&txp); break;
+            case 7: game = new game7::g_game7(&txp); break;
+            default: game = new game1::g_game1(&txp); break;
+        }
+    }
+
+    if(game == nullptr)
+    {
+        printf("GAME IS NULL — crash avoided\n");
+        return;
+    }
+    
+    for(int i = 0; i < 7; i++)
+    {
+        lv_obj_add_flag(gbtns[i], LV_OBJ_FLAG_HIDDEN);
+    }
+    
+    lv_obj_clear_flag(quitbtn, LV_OBJ_FLAG_HIDDEN);
+    game->Setup();
+}
+
+static int ids[] = { 1, 2, 3, 4, 5, 6, 7 };
+lv_obj_t* CreateLaunchBtn(lv_obj_t* parent, int id)
+{
+    lv_obj_t *btn = lv_btn_create(parent);
+    lv_obj_center(btn);
+    lv_obj_add_event_cb(btn, CreateGame, LV_EVENT_CLICKED, &ids[id - 1]);
+    // lv_obj_set_scale(btn, 100, 50);
+
+    lv_obj_t *label = lv_label_create(btn);
+    switch(id)
+    {
+        case 1: lv_label_set_text(label, "Game 1"); break;
+        case 2: lv_label_set_text(label, "Game 2"); break;
+        case 3: lv_label_set_text(label, "Game 3"); break;
+        case 4: lv_label_set_text(label, "Game 4"); break;
+        case 5: lv_label_set_text(label, "Game 5"); break;
+        case 6: lv_label_set_text(label, "Game 6"); break;
+        case 7: lv_label_set_text(label, "Game 7"); break;
+    }
+
+    lv_obj_center(label);
+    return btn;
+}
+
+lv_obj_t* CreateQuitBtn()
+{
+    lv_obj_t *quit = lv_btn_create(lv_screen_active());
+    lv_obj_align(quit, LV_ALIGN_TOP_RIGHT, 10, -10);
+    lv_obj_add_event_cb(quit, QuitGame, LV_EVENT_CLICKED, NULL);
+
+    lv_obj_t *label = lv_label_create(quit);
+    lv_label_set_text(label, "Quit Game");
+    lv_obj_center(label);
+
+    lv_obj_add_flag(quit, LV_OBJ_FLAG_HIDDEN);
+    return quit;
+}
+
+bool INPUTWAIT = false;
+void read_touchpad(lv_indev_t* indev, lv_indev_data_t* data)
+{
+	uint16_t touchpad_x[5] = { 0 };
+	uint16_t touchpad_y[5] = { 0 };
+	uint16_t strength[5] = { 0 };
+	uint8_t touchpad_cnt = 0;
+	Touch_Read_Data();
+	uint8_t touchpad_pressed = Touch_Get_XY(touchpad_x, touchpad_y, strength, &touchpad_cnt, CST328_LCD_TOUCH_MAX_POINTS);
+	if (touchpad_pressed && touchpad_cnt > 0)
+	{
+		// update last interaction
+		// badgeMode_lastActivity = millis();
+
+		data->point.x = touchpad_x[0];
+		data->point.y = touchpad_y[0];
+		data->state = LV_INDEV_STATE_PR;
+
+        // game->PlayerInput(touchpad_x[0], touchpad_y[0]);
+        if(!INPUTWAIT && game != nullptr)
+        {
+            game->PlayerInput(touchpad_x[0], touchpad_y[0]);
+            INPUTWAIT = true;
+        }
+//#if LV_USE_LOG != 0 && LV_LOG_LEVEL < LV_LOG_LEVEL_ERROR  //trace = 0; info = 1; warn = 2; error = 3 (lv_log.h:26)
+		// printf("LVGL  : X=%u Y=%u num=%d\r\n", touchpad_x[0], touchpad_y[0], touchpad_cnt);
+//#endif
+		//how to log normal printf to LV_LOG:
+		// char buffer[255];
+		// snprintf(buffer, sizeof(buffer), "LVGL  : X=%u Y=%u num=%d\r\n", touchpad_x[0], touchpad_y[0], touchpad_cnt);
+		// LV_LOG_INFO(buffer);
+	}
+	else
+	{
+		data->state = LV_INDEV_STATE_REL;
+	}
+
+    if(!touchpad_pressed)
+    {
+        INPUTWAIT = false;
+    }
+}
+
+void setup() { 
+  Serial.begin(115200);
+  Serial.println("begin");
+
+  Touch_Init();
+  init_display();
+
+  lv_indev_t* indev = lv_indev_create();
+  lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER); /*Touchpad should have POINTER type*/
+  lv_indev_set_read_cb(indev, read_touchpad);
+
+  lv_tick_inc(5);
+  lv_timer_handler();
+
+    for(int i = 0; i < 7; i++)
+    {
+        gbtns[i] = CreateLaunchBtn(lv_screen_active(), i+1);
+        lv_obj_set_y(gbtns[i], i * 40 - 130);
+    }
+    quitbtn = CreateQuitBtn();
+//   printf("Free internal RAM: %u bytes\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+//   printf("Free PSRAM: %u bytes\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+//   printf("Free internal RAM: %u bytes\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+//   printf("Free PSRAM: %u bytes\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+}
+
+void loop() {
+    unsigned long now = millis();
+
+  if (now - last_tick >= 5) {
+    lv_tick_inc(5);         
+    last_tick = now;
+  }
+
+  if(game != nullptr)
+    game->Update();
+
+  lv_timer_handler();
+  vTaskDelay(pdMS_TO_TICKS(5));
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding ="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup Label="Globals" >
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{ab7f9aa0-fc95-4781-9e90-67aac71679cf}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\painlessMeshSTA.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\scheduler.cpp" />
+<ClCompile Include="$(MSBuildThisFileDirectory)src\wifi.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\painlessMesh.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessMeshSTA.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessTaskOptions.h" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\arduino\wifi.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\boost\asynctcp.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\base64.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\buffer.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\callback.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\configuration.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\connection.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\layout.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\logger.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\mesh.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\ntp.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\ota.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\plugin.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\protocol.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\router.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\painlessmesh\tcp.hpp" />
+<ClInclude Include="$(MSBuildThisFileDirectory)src\plugin\performance.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)CMakeLists.txt" />
+<Text Include="$(MSBuildThisFileDirectory)library.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)autotest.sh" />
+<None Include="$(MSBuildThisFileDirectory)CONTRIBUTING.md" />
+<None Include="$(MSBuildThisFileDirectory)library.json" />
+<None Include="$(MSBuildThisFileDirectory)LICENSE" />
+<None Include="$(MSBuildThisFileDirectory)README.md" />
+  </ItemGroup>
+</Project>
