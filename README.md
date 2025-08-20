@@ -20,7 +20,7 @@ It's a celebration of the creativity, range of interests and depth of talent tha
 
 This repo is here to share the code that makes the badge go, share the BOM, enclosure model and documentation.
 
-This project was a huge effort for a high school sophomore. I genuinely hope you love it.
+This project was a huge effort for a high school Junior. I genuinely hope you love it.
 # Usage
 ## Buttons
 From the front of the enclosure (farthest from the text on the side and USB port):
@@ -122,7 +122,7 @@ There are a lot of tutorials out there on how to use esptool, so this section is
 - Get esptool from either the Binaries folder or GitHub [here](https://github.com/espressif/esptool/releases). The syntax below is for v.4.5.1
 - Download your binary of choice from this repo (should be ~16 MB)
 - Connect your board to your PC
-- Be sure you have drivers installed - you probably need the (Silicon Labs CP210X drivers)[https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads]
+- Be sure you have drivers installed - you probably need the [Silicon Labs CP210X drivers](https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 - Figure out what port your board is on; assuming you're on Windows, it'll be a COM port (e.g. COM4)
 - For this example, we'll assume you're on Windows and that your COM port is COM4 - please check your specific config
 - We're also assuming that esptool is in the same folder as spacebadge.bin
