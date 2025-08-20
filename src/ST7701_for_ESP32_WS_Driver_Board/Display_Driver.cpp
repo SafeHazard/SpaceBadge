@@ -152,6 +152,7 @@ bool init_display(void)
 	lv_indev_t* indev = lv_indev_create();
 	lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER); /*Touchpad should have POINTER type*/
 	lv_indev_set_read_cb(indev, read_touchpad);
+	lv_indev_set_long_press_time(indev, 2000); //set 'long press' time for touchscreen (used to exit badge mode)
 	LV_LOG_INFO("done.\n");
 
 	return true;

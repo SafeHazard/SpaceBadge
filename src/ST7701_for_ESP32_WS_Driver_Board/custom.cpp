@@ -566,7 +566,7 @@ void setup_cb()
     lv_obj_add_event_cb(objects.btn_queue_skip, Skip, LV_EVENT_CLICKED, NULL);
 
 	// badge mode callback   
-    lv_obj_add_event_cb(objects.cnt_badge_tappad, end_badge_mode, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(objects.cnt_badge_tappad, end_badge_mode, LV_EVENT_LONG_PRESSED, NULL); //changed from LV_EVENT_CLICKED to make badge mode only exit after 2000 ms (see Display_Driver.cpp:155)
 
     // avatar screen callbacks
     lv_obj_add_event_cb(objects.roller_avatar_component, avatarRollerChanged, LV_EVENT_VALUE_CHANGED, NULL);
