@@ -48,7 +48,8 @@ From the front of the enclosure (farthest from the text on the side and USB port
 - **Badge Mode**
     - This mode shows off your game scores and rank after a specified delay
 	- Enabled by default
-	- Lowers power consumption of the badge 
+ 	- v.1.0.0+: Tap the screen for 2 seconds to exit Badge Mode
+	- v.1.1.1+: Press and hold the screen for 2 seconds to exit Badge Mode
 - **Privacy**
 	- The SPACE BADGE uses a private wifi mesh network to communicate and **does not** connect to the internet
 	- Settings > Cloak (Airplane Mode)
@@ -169,6 +170,8 @@ If you plan to use any portion of this project, please check applicable laws to 
 # Known Issues
 - Booting is a tad slow, but I did it that way to make the UI much more responsive (frames/second vs seconds/frame)
 - It can take 30-ish seconds for game hosts and clients to "see" each other
+	- If you get impatient you can turn on 'Cloaking' (airplane mode) from the Settings screen
+ 	- Or try restarting the badge
 - The 'All' graph was not scaled properly on the 'Mission' tab on the v.1.0 release. That has been corrected; please flash or build & flash the new version for the UI patch
 - Audio may cut out; a reboot tends to fix that
 - There may be occasional issues that cause a board to reboot
