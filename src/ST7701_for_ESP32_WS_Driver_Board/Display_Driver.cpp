@@ -144,8 +144,11 @@ static void fps_on_refr_finish(lv_event_t* e) {
 #endif
 }
 
-static void fps_timer_cb(lv_timer_t* t) {
-	(void)t;
+// Called at the end of every flush (self-timed). Emits via printf so it lands on
+// the same ESP-IDF console as LVGL's LV_LOG (LV_LOG_PRINTF=1) — NOT Serial, which
+// under CDCOnBoot routes to a different sink. Firing from the flush (not an
+// lv_timer) means it also reports during the boot intro's lv_refr_now rendering.
+static void fps_report(void) {
 	uint32_t now = millis();
 	if (s_fps_last_ms == 0) { s_fps_last_ms = now; return; }
 	uint32_t dt = now - s_fps_last_ms;
@@ -156,10 +159,14 @@ static void fps_timer_cb(lv_timer_t* t) {
 	uint64_t us    = s_flush_us;
 	s_refr_count = 0; s_flush_count = 0; s_flush_bytes = 0; s_flush_us = 0;
 	s_fps_last_ms = now;
-	float mbps    = (float)bytes / (1024.0f * 1024.0f) / ((float)dt / 1000.0f);
-	uint32_t uspf = flush ? (uint32_t)(us / flush) : 0;
-	Serial.printf("[FPS] render=%lu flush/s=%lu MB/s=%.2f us/flush=%lu (mode=%s bufrows=%d bench=%d)\n",
-		(unsigned long)refr, (unsigned long)flush, mbps, (unsigned long)uspf,
+	// Normalize rates by the actual interval (dt may exceed 1000 ms if rendering paused).
+	float secs      = (float)dt / 1000.0f;
+	float render_fps = (float)refr / secs;
+	float flush_ps   = (float)flush / secs;
+	float mbps       = (float)bytes / (1024.0f * 1024.0f) / secs;
+	uint32_t uspf    = flush ? (uint32_t)(us / flush) : 0;
+	printf("[FPS] render=%.1f flush/s=%.1f MB/s=%.2f us/flush=%lu (mode=%s bufrows=%d bench=%d)\n",
+		render_fps, flush_ps, mbps, (unsigned long)uspf,
 		USE_LOVYAN_FLUSH ? "lovyan" : "raw",
 #if USE_LOVYAN_FLUSH
 		(int)DISP_BUF_ROWS,
@@ -250,6 +257,7 @@ static void my_disp_flush(lv_display_t* disp, const lv_area_t* area, uint8_t* px
 	s_flush_us    += (uint64_t)(esp_timer_get_time() - t0);
 	s_flush_count++;
 	s_flush_bytes += (uint64_t)w * h * sizeof(lv_color_t);
+	fps_report();
 #endif
 
 	// Inform LVGL that flushing is done
@@ -332,7 +340,8 @@ bool init_display(void)
 
 #if SPACEBADGE_FPS_LOG
 	lv_display_add_event_cb(disp, fps_on_refr_finish, LV_EVENT_REFR_READY, NULL);
-	lv_timer_create(fps_timer_cb, 1000, NULL);   // 1 Hz report, runs in lv_timer_handler
+	// [FPS] is reported from the flush callback (self-timed via printf) so it also
+	// covers the boot intro's lv_refr_now rendering, not just the main loop.
 #endif
 
 	LV_LOG_INFO("Display initialization complete!\n");

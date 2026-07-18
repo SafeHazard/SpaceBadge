@@ -1,8 +1,18 @@
-# SpaceBadge frame-rate optimization — LovyanGFX DMA flush
+# SpaceBadge frame-rate optimization
 
 Branch: `perf/lovyangfx-dma-flush`
 
-## Problem
+## TL;DR (measured on hardware)
+
+The display driver was **not** the frame-rate bottleneck. The raw driver and a LovyanGFX
+DMA rewrite both land at the same fps — because both were already pinned at LVGL's refresh
+cap (`LV_DEF_REFR_PERIOD = 33 ms ≈ 30 Hz`). **The single change that raises the frame rate is
+`LV_DEF_REFR_PERIOD 33 → 16` (≈60 Hz), which took the running badge from ~30 to ~50 fps —
+and it works with the existing driver.** The LovyanGFX swap is optional (cleaner driver,
+headroom, a path to async flush) but by itself buys ~0 fps. Tradeoff: 60 Hz ≈ 2× render CPU;
+validate mesh/audio/games/battery before adopting it. See the measured table below.
+
+## Original hypothesis (partially wrong — kept for the record)
 
 The badge's display path was a hand-rolled raw-SPI ST7789 driver (`Display_ST7789.cpp`)
 driven by LVGL through `Display_Driver.cpp`. Three things capped the frame rate:
@@ -58,21 +68,44 @@ landscape 3 there).
    cap toward 60. Only helps once the flush is fast enough to keep up (it now is).
 3. **`DISP_BUF_ROWS`** sweep — larger buffers = fewer flush calls / less per-flush overhead.
 
-## Measurements (COM8, `[FPS]` telemetry)
+## Measurements (on hardware, COM8, `[FPS]` telemetry)
 
-Metric legend: `render` = display refreshes/sec (true visible fps, capped by
-`LV_DEF_REFR_PERIOD`); `us/flush` = mean CPU time blocked per flush (uncapped — this is
-where the DMA speedup shows directly); `MB/s` = flush throughput.
+`render` = display refreshes/sec (visible fps); `us/flush` = mean CPU time per flush.
 
-| build | render fps | us/flush | MB/s | notes |
-|---|---|---|---|---|
-| baseline raw, bench | _pending_ | _pending_ | _pending_ | `USE_LOVYAN_FLUSH=0 BENCH=1` |
-| lovyan DMA, bench | _pending_ | _pending_ | _pending_ | `USE_LOVYAN_FLUSH=1 BENCH=1` |
-| lovyan DMA, real UI | _pending_ | _pending_ | _pending_ | as shipped (no bench) |
+**Real-world fps (badge running its normal UI):**
 
-> Serial-capture gotcha: this board exposes the app console on the native USB CDC, not the
-> COM port used for flashing. Measurement builds use `CDCOnBoot=default` to route `Serial`
-> to the flashing port; production ships `CDCOnBoot=cdc`. Also monitor with `dtr=off rts=off`.
+| flush driver | `LV_DEF_REFR_PERIOD` | render fps |
+|---|---|---|
+| raw (original) | 33 ms (~30 Hz cap) | **~28.5** |
+| LovyanGFX DMA | 33 ms (~30 Hz cap) | **~30** |
+| LovyanGFX DMA | 16 ms (~60 Hz cap) | **~50** |
+| raw (original) | 16 ms (~60 Hz cap) | **~50** |
+
+**Per-flush (bench = forced full-screen redraw):** raw ~1503 µs / 9600 B ≈ **6.1 MB/s**;
+LovyanGFX ~2748 µs / 19200 B ≈ **6.8 MB/s**. Both are **SPI-clock-bound** (80 MHz); DMA is
+only ~10 %/byte faster — it does not make the SPI clock faster. A full complex-screen redraw
+is **render-bound** (~1 fps for BOTH drivers), i.e. limited by LVGL's software drawing, not
+the flush — which is why the badge relies on partial updates.
+
+### What this means (honest)
+
+- **The display flush was NOT the frame-rate bottleneck.** Swapping the hand-rolled raw
+  driver for LovyanGFX DMA changes real-world fps by ~1–2 fps — both were already pinned at
+  LVGL's refresh-period cap.
+- **The real fps lever is `LV_DEF_REFR_PERIOD`** (one line in `lv_conf.h`): 33 → 16 ms took
+  the UI from ~30 to **~50 fps** (not the full 60 — the loop/render cadence caps it ~50).
+- **LovyanGFX's actual value:** a cleaner/maintained driver, a modest per-flush speedup, DMA
+  + a double buffer that give **headroom** to sustain a higher refresh rate, and the
+  prerequisite for a future **async flush** (which *would* overlap render with transfer and
+  free the CPU — the current flush is blocking, so the 2nd buffer buys no concurrency yet).
+- **Tradeoff of 60 Hz:** ~2× the render CPU. On a badge that also runs painlessMesh, audio,
+  and games, this can steal CPU from them (audio memory-pressure warnings already appear at
+  30 Hz). Validate mesh/audio/gameplay before shipping 60 Hz; 33 ms stays the safe default.
+
+> Serial-capture gotchas: (1) this board's app console is on the native USB, and under
+> `CDCOnBoot=cdc` `Serial` and `printf` route to *different* sinks — the `[FPS]` meter uses
+> `printf` to match LVGL's own log. (2) Measurement builds use `CDCOnBoot=default`; production
+> ships `cdc`. (3) A crash-looping firmware wedges the USB — recover via download mode.
 
 ## Validation status
 

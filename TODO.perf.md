@@ -90,6 +90,19 @@ Hardware test: **COM8 available for flashing** — can measure real before/after
   on hardware (saw boot logs before the unrelated config crash).
 - FIXED build config: build_perf.sh now uses the project's partitions.csv (build.partitions).
 
+## MEASURED RESULTS (on hardware, COM8) — honest, and they revise the premise
+- Raw driver (baseline), real-world: **~28.5 fps** (pinned at LVGL's 30 Hz cap).
+- LovyanGFX DMA, real-world: **~29-30 fps** (same 30 Hz cap).
+  => The flush was NOT the frame-rate bottleneck. Swapping to LovyanGFX alone does
+     essentially nothing to fps; both hit the LV_DEF_REFR_PERIOD=33ms (~30 Hz) ceiling.
+- Per-flush (bench, forced full-screen): raw ~1503us/9600B (~6.1 MB/s) vs lovyan
+  ~2748us/19200B (~6.8 MB/s). Both are SPI-clock-bound (80 MHz); DMA is only ~10%/byte
+  faster. Full-screen complex redraw is RENDER-bound (~1 fps both), not flush-bound.
+- REAL lever = lower LV_DEF_REFR_PERIOD (33->16 = 60 Hz cap). Testing lovyan+refr16 now.
+  The DMA flush's value is HEADROOM to sustain a higher refresh rate + future async flush.
+- The "dc33-24fps" baseline in the sketchbook name doesn't match my ~28.5 measurement
+  (old/heavier scenario, or measured differently).
+
 ## STILL PENDING (needs the badge reflashable)
 - Read the actual [FPS] delta (render fps + us/flush) — LovyanGFX vs raw baseline (A/B via
   USE_LOVYAN_FLUSH), and the SPACEBADGE_FPS_BENCH max-throughput numbers. Fill in docs table.
