@@ -14,8 +14,16 @@
 
 set -o pipefail
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-UITEST_DIR="C:/Users/data/OneDrive/esp/ui_test"
-ACLI="$UITEST_DIR/tools/arduino-cli.exe"
+# Locate arduino-cli. It ships with the sibling Clip-Boy/ui_test project, whose layout
+# has moved before — search the known candidates and fall back to PATH.
+ACLI=""
+for c in \
+  "C:/Users/data/OneDrive/esp/ui_test/Clip-Boy/tools/arduino-cli.exe" \
+  "C:/Users/data/OneDrive/esp/ui_test/tools/arduino-cli.exe" \
+  "$(command -v arduino-cli 2>/dev/null)"; do
+  [ -n "$c" ] && [ -f "$c" ] && { ACLI="$c"; break; }
+done
+[ -z "$ACLI" ] && { echo "[BUILD] arduino-cli.exe not found — update the path in $(basename "$0")"; exit 1; }
 SKETCH="$REPO_DIR/src/ST7701_for_ESP32_WS_Driver_Board/ST7701_for_ESP32_WS_Driver_Board.ino"
 LIBS="$REPO_DIR/src/libraries"
 BUILD_PATH="$REPO_DIR/build/perf"

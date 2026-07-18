@@ -31,8 +31,10 @@ while [[ $# -gt 0 ]]; do
 done
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-ESPTOOL="C:/Users/data/AppData/Local/Arduino15/packages/esp32/tools/esptool_py/4.5.1/esptool.exe"
-BOOTAPP0="C:/Users/data/AppData/Local/Arduino15/packages/esp32/hardware/esp32/2.0.17/tools/partitions/boot_app0.bin"
+# Locate esptool + boot_app0 dynamically (core version varies: 2.0.10 / 2.0.17 / ...).
+ESPTOOL="$(ls "C:/Users/data/AppData/Local/Arduino15/packages/esp32/tools/esptool_py/"*/esptool.exe 2>/dev/null | head -1)"
+BOOTAPP0="$(ls "C:/Users/data/AppData/Local/Arduino15/packages/esp32/hardware/esp32/"*/tools/partitions/boot_app0.bin 2>/dev/null | head -1)"
+[ -z "$ESPTOOL" ] && { echo "esptool.exe not found under Arduino15"; exit 1; }
 D="$REPO/$DIR"
 BOOT="$D/ST7701_for_ESP32_WS_Driver_Board.ino.bootloader.bin"
 PART="$D/ST7701_for_ESP32_WS_Driver_Board.ino.partitions.bin"

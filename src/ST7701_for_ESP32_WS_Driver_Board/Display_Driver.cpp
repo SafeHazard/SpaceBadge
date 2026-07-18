@@ -351,6 +351,18 @@ bool init_display(void)
 	lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER); /*Touchpad should have POINTER type*/
 	lv_indev_set_read_cb(indev, read_touchpad);
 	lv_indev_set_long_press_time(indev, 2000); //set 'long press' time for touchscreen (used to exit badge mode)
+
+	// Decouple touch polling from the display refresh rate. LVGL ties the indev read
+	// timer to LV_DEF_REFR_PERIOD; when the display runs at 60 Hz (16 ms) that also
+	// polls the CST328 every 16 ms, and a single tap gets sampled across a transient
+	// release from the touch controller's read+clear -> registers as a DOUBLE click
+	// (e.g. a dropdown opens and immediately closes in ~1 frame). Pin the touch read
+	// period to 33 ms (its 30 Hz-era value) so touch behaves as before while the
+	// screen still refreshes at 60 Hz. See TOUCH_READ_PERIOD_MS.
+#ifndef TOUCH_READ_PERIOD_MS
+#define TOUCH_READ_PERIOD_MS 33
+#endif
+	lv_timer_set_period(lv_indev_get_read_timer(indev), TOUCH_READ_PERIOD_MS);
 	LV_LOG_INFO("done.\n");
 
 	return true;
