@@ -50,6 +50,7 @@ From the front of the enclosure (farthest from the text on the side and USB port
 	- Enabled by default
  	- v.1.0.0+: Tap the screen for 2 seconds to exit Badge Mode
 	- v.1.1.1+: Press and hold the screen for 2 seconds to exit Badge Mode
+	- v.1.2.0+: A "Keep holding to unlock" prompt now appears while you touch the Badge Mode screen — keep holding for 2 seconds to exit
 - **Privacy**
 	- The SPACE BADGE uses a private wifi mesh network to communicate and **does not** connect to the internet
 	- Settings > Cloak (Airplane Mode)
@@ -169,6 +170,7 @@ If you plan to use any portion of this project, please check applicable laws to 
 - This disclaimer does not constitute legal advice. Users assume all risks associated with the use of this product.
 # Known Issues
 - Booting is a tad slow, but I did it that way to make the UI much more responsive (frames/second vs seconds/frame)
+- v.1.2.0 raised the UI frame rate (~30 → ~50 fps) for smoother animation and scrolling
 - It can take 30-ish seconds for game hosts and clients to "see" each other
 	- If you get impatient you can turn on 'Cloaking' (airplane mode) from the Settings screen
  	- Or try restarting the badge
