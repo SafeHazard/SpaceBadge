@@ -103,8 +103,21 @@ Hardware test: **COM8 available for flashing** — can measure real before/after
 - The "dc33-24fps" baseline in the sketchbook name doesn't match my ~28.5 measurement
   (old/heavier scenario, or measured differently).
 
-## STILL PENDING (needs the badge reflashable)
-- Read the actual [FPS] delta (render fps + us/flush) — LovyanGFX vs raw baseline (A/B via
-  USE_LOVYAN_FLUSH), and the SPACEBADGE_FPS_BENCH max-throughput numbers. Fill in docs table.
-- Human eyeball: confirm on-screen colors look right (I can't see the screen).
-- Then: LV_DEF_REFR_PERIOD 33->16 experiment; consider async flush for real render/DMA overlap.
+## DONE — measured; see docs/perf-frame-rate.md matrix. Commits 485d447, 92b3c84, aa6453f (branch).
+
+## Current badge state
+- Flashed: raw driver + refr16 (60 Hz), CDCOnBoot=default (a measurement build). Boots clean,
+  runs steady ~50 fps, no crash. LittleFS data restored. This demonstrates the fps finding.
+- To restore original: flash Binaries/spacebadge_1.1.1-3m.bin @0x10000 (flash-only, no build).
+
+## Build-chain note (do NOT auto-fix per user)
+- scripts/build_perf.sh + flash_all.sh reference `C:\Users\data\OneDrive\esp\ui_test\tools\
+  arduino-cli.exe`, which the user MOVED/changed when fixing Clip-Boy. Update the ACLI/ESPTOOL
+  paths in those scripts before reusing. esptool.exe path (2.0.17 core) still valid at time of writing.
+
+## Decisions for the user
+1. Adopt 60 Hz (LV_DEF_REFR_PERIOD=16)? +~20 fps but ~2x render CPU — test mesh/audio/games/battery.
+2. Keep the LovyanGFX swap (485d447)? It gives ~0 fps but is cleaner + enables a future async flush.
+   The fps win does NOT need it (raw@16ms also ~50). Could ship just the one-line lv_conf change.
+3. Confirm on-screen colors look correct (I can't see the screen).
+4. Merge to main / push branch? (Not done — feature branch only. 7.6MB LovyanGFX vendor in 485d447.)
