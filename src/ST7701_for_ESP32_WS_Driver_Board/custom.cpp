@@ -513,6 +513,26 @@ static void debug_events(lv_event_t* e)
     }
 }
 
+// Badge-mode "keep holding to unlock" hint. Shown only while the badge tappad is
+// pressed (LV_EVENT_PRESSED) and hidden on release/press-lost, giving the user
+// feedback that a 2 s hold — not a tap — is what dismisses badge mode. The label
+// pointer is passed as the event user_data.
+static void badge_hold_prompt_show(lv_event_t* e)
+{
+    lv_obj_t* prompt = (lv_obj_t*)lv_event_get_user_data(e);
+    if (prompt && lv_obj_is_valid(prompt))
+    {
+        lv_obj_move_foreground(prompt);
+        lv_obj_clear_flag(prompt, LV_OBJ_FLAG_HIDDEN);
+    }
+}
+static void badge_hold_prompt_hide(lv_event_t* e)
+{
+    lv_obj_t* prompt = (lv_obj_t*)lv_event_get_user_data(e);
+    if (prompt && lv_obj_is_valid(prompt))
+        lv_obj_add_flag(prompt, LV_OBJ_FLAG_HIDDEN);
+}
+
 // set up callbacks for objects
 void setup_cb()
 {
@@ -569,6 +589,21 @@ void setup_cb()
 	// so an accidental brush doesn't drop out of badge mode. The 2 s threshold is the
 	// indev long-press time set in init_display (lv_indev_set_long_press_time(indev, 2000)).
     lv_obj_add_event_cb(objects.cnt_badge_tappad, end_badge_mode, LV_EVENT_LONG_PRESSED, NULL);
+
+    // "keep holding to unlock" hint — created hidden on the badge screen, shown only
+    // while the tappad is being pressed (see badge_hold_prompt_show/hide above).
+    lv_obj_t* badge_hold_prompt = lv_label_create(objects.badge);
+    lv_label_set_text(badge_hold_prompt, "Keep holding to unlock");
+    lv_obj_set_style_text_color(badge_hold_prompt, lv_color_white(), 0);
+    lv_obj_set_style_bg_color(badge_hold_prompt, lv_color_black(), 0);
+    lv_obj_set_style_bg_opa(badge_hold_prompt, LV_OPA_70, 0);
+    lv_obj_set_style_pad_all(badge_hold_prompt, 8, 0);
+    lv_obj_set_style_radius(badge_hold_prompt, 8, 0);
+    lv_obj_align(badge_hold_prompt, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_add_flag(badge_hold_prompt, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_event_cb(objects.cnt_badge_tappad, badge_hold_prompt_show, LV_EVENT_PRESSED,    badge_hold_prompt);
+    lv_obj_add_event_cb(objects.cnt_badge_tappad, badge_hold_prompt_hide, LV_EVENT_RELEASED,   badge_hold_prompt);
+    lv_obj_add_event_cb(objects.cnt_badge_tappad, badge_hold_prompt_hide, LV_EVENT_PRESS_LOST, badge_hold_prompt);
 
     // avatar screen callbacks
     lv_obj_add_event_cb(objects.roller_avatar_component, avatarRollerChanged, LV_EVENT_VALUE_CHANGED, NULL);
