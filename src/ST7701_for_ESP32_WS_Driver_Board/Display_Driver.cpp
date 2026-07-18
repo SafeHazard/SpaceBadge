@@ -2,25 +2,179 @@
 #include <esp_timer.h>
 #include "game_parent.h"
 
-// Display buffer size (adapt based on available RAM)
-#define BUFFER_ROWS 32
-#define BUFFER_SIZE (LCD_WIDTH * BUFFER_ROWS)
+// ─────────────────────────────────────────────────────────────────────────────
+// Display backend (perf/lovyangfx-dma-flush)
+//
+// USE_LOVYAN_FLUSH = 1 (default): LovyanGFX DMA flush + double buffer. The SPI
+//   transfer runs on the DMA engine and CS/DC are driven at register level,
+//   replacing the original hand-rolled path (Display_ST7789.cpp) that pushed the
+//   whole frame with a CPU-polled `transferBytes` and toggled CS/DC per byte with
+//   digitalWrite. This is the frame-rate win.
+//
+// USE_LOVYAN_FLUSH = 0: the original raw-SPI blocking flush, unchanged. Kept as a
+//   one-flag fallback (instant revert to the proven driver) and as the A/B
+//   baseline for the FPS meter below.
+//
+// The LovyanGFX panel/bus/color config is copied VERBATIM from the sibling ui_test
+// project (Waveshare ESP32-S3-Touch-LCD-2.8 — identical hardware + identical
+// lv_conf color handling), so colors are known-good; only the rotation is portrait
+// (0) to match this badge's 240x320 UI.
+// ─────────────────────────────────────────────────────────────────────────────
 
-// Display buffers (CPU-driven)
-// static lv_color_t buf1[BUFFER_SIZE];
-// static lv_color_t buf2[BUFFER_SIZE];
+#ifndef USE_LOVYAN_FLUSH
+#define USE_LOVYAN_FLUSH 1
+#endif
 
-int pixelCount = (LCD_WIDTH * LCD_HEIGHT * 2) / 16; // Even smaller buffers for more RAM
-int bufSizeBytes = pixelCount * sizeof(lv_color_t);
+// Serial [FPS] telemetry (once/sec via an lv_timer, so it prints even when the
+// screen is idle). Set 0 for production builds.
+#ifndef SPACEBADGE_FPS_LOG
+#define SPACEBADGE_FPS_LOG 1
+#endif
 
+// Benchmark stimulus: continuously invalidate the whole active screen so the
+// display pipeline (render + flush) is the bottleneck — an apples-to-apples A/B
+// of max throughput. MUST be 0 in production (it pins the CPU redrawing).
+#ifndef SPACEBADGE_FPS_BENCH
+#define SPACEBADGE_FPS_BENCH 0
+#endif
+
+#if USE_LOVYAN_FLUSH
+#define LGFX_USE_V1
+#include <LovyanGFX.hpp>
+
+// Pins — identical to Display_ST7789.h (Waveshare ESP32-S3-Touch-LCD-2.8)
+#define LGFX_PIN_SCLK   40
+#define LGFX_PIN_MOSI   45
+#define LGFX_PIN_MISO   -1
+#define LGFX_PIN_DC     41
+#define LGFX_PIN_CS     42
+#define LGFX_PIN_RST    39
+
+class LGFX : public lgfx::LGFX_Device {
+	lgfx::Panel_ST7789 _panel;
+	lgfx::Bus_SPI      _bus;
+public:
+	LGFX(void) {
+		{   // SPI bus (SPI2/FSPI, 80 MHz, DMA auto)
+			auto cfg        = _bus.config();
+			cfg.spi_host    = SPI2_HOST;
+			cfg.spi_mode    = 0;
+			cfg.freq_write  = 80000000;
+			cfg.freq_read   = 16000000;
+			cfg.pin_sclk    = LGFX_PIN_SCLK;
+			cfg.pin_mosi    = LGFX_PIN_MOSI;
+			cfg.pin_miso    = LGFX_PIN_MISO;
+			cfg.pin_dc      = LGFX_PIN_DC;
+			cfg.dma_channel = SPI_DMA_CH_AUTO;
+			_bus.config(cfg);
+			_panel.setBus(&_bus);
+		}
+		{   // ST7789 panel, native 240x320 portrait
+			auto cfg            = _panel.config();
+			cfg.pin_cs          = LGFX_PIN_CS;
+			cfg.pin_rst         = LGFX_PIN_RST;
+			cfg.pin_busy        = -1;
+			cfg.memory_width    = 240;
+			cfg.memory_height   = 320;
+			cfg.panel_width     = 240;
+			cfg.panel_height    = 320;
+			cfg.offset_x        = 0;
+			cfg.offset_y        = 0;
+			cfg.offset_rotation = 0;
+			cfg.readable        = false;
+			cfg.invert          = true;   // ST7789 IPS — matches ui_test known-good
+			cfg.rgb_order       = false;
+			cfg.bus_shared      = false;
+			_panel.config(cfg);
+		}
+		setPanel(&_panel);
+	}
+};
+
+static LGFX lgfx_display;
+#endif // USE_LOVYAN_FLUSH
+
+// ─── Display buffers ─────────────────────────────────────────────────────────
+#if USE_LOVYAN_FLUSH
+// Two DMA-capable partial buffers in internal RAM. Rendering into fast internal
+// RAM (not PSRAM) then DMA-ing out is the FPS-optimal layout on ESP32-S3.
+// NOTE: with the current blocking flush (endWrite waits for DMA) the second
+// buffer does NOT overlap render with transfer — LVGL only reuses it after the
+// flush returns. It is kept because it is free insurance and is the prerequisite
+// for a future async flush (pushImageDMA + deferred flush_ready) which WOULD
+// overlap. The measured win today is DMA + batched SPI vs per-byte bit-bang.
+#ifndef DISP_BUF_ROWS
+#define DISP_BUF_ROWS 40
+#endif
+static const uint32_t DISP_BUF_PX    = (uint32_t)LCD_WIDTH * DISP_BUF_ROWS;
+static const uint32_t DISP_BUF_BYTES = DISP_BUF_PX * sizeof(lv_color_t);
+static_assert(DISP_BUF_BYTES % 32 == 0, "buffer size must be a multiple of the 32-byte alignment for heap_caps_aligned_alloc");
+
+static lv_color_t* buf1 = (lv_color_t*)heap_caps_aligned_alloc(
+	32, DISP_BUF_BYTES, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
+static lv_color_t* buf2 = (lv_color_t*)heap_caps_aligned_alloc(
+	32, DISP_BUF_BYTES, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
+#else
+// Original single partial buffer (raw driver baseline).
+static int    pixelCount   = (LCD_WIDTH * LCD_HEIGHT * 2) / 16;
+static uint32_t bufSizeBytes = pixelCount * sizeof(lv_color_t);
 static lv_color_t* buf1 = (lv_color_t*)heap_caps_aligned_alloc(32, bufSizeBytes, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
-// buf2 removed to save RAM - using single buffer only
+#endif
+
+// ─── On-device FPS / throughput meter (Serial, USB-CDC) ──────────────────────
+// Prints once/sec from a 1 Hz lv_timer (runs inside lv_timer_handler, so it
+// reports even on an idle screen):
+//   [FPS] render=NN flush/s=MMM MB/s=X.X us/flush=UUU (mode=lovyan|raw bufrows=R)
+// render = display refreshes/sec (LV_EVENT_REFR_READY) = the true visible frame
+// rate. us/flush = mean CPU time blocked per flush (uncapped by the 33 ms LVGL
+// refresh period — this is where the DMA speedup shows directly).
+#if SPACEBADGE_FPS_LOG
+static volatile uint32_t s_flush_count = 0;
+static volatile uint64_t s_flush_bytes = 0;
+static volatile uint64_t s_flush_us    = 0;
+static volatile uint32_t s_refr_count  = 0;
+static uint32_t s_fps_last_ms = 0;
+
+static void fps_on_refr_finish(lv_event_t* e) {
+	(void)e;
+	s_refr_count++;
+#if SPACEBADGE_FPS_BENCH
+	// force the next refresh so the pipeline stays saturated for benchmarking
+	lv_obj_invalidate(lv_screen_active());
+#endif
+}
+
+static void fps_timer_cb(lv_timer_t* t) {
+	(void)t;
+	uint32_t now = millis();
+	if (s_fps_last_ms == 0) { s_fps_last_ms = now; return; }
+	uint32_t dt = now - s_fps_last_ms;
+	if (dt < 1000) return;
+	uint32_t refr  = s_refr_count;
+	uint32_t flush = s_flush_count;
+	uint64_t bytes = s_flush_bytes;
+	uint64_t us    = s_flush_us;
+	s_refr_count = 0; s_flush_count = 0; s_flush_bytes = 0; s_flush_us = 0;
+	s_fps_last_ms = now;
+	float mbps    = (float)bytes / (1024.0f * 1024.0f) / ((float)dt / 1000.0f);
+	uint32_t uspf = flush ? (uint32_t)(us / flush) : 0;
+	Serial.printf("[FPS] render=%lu flush/s=%lu MB/s=%.2f us/flush=%lu (mode=%s bufrows=%d bench=%d)\n",
+		(unsigned long)refr, (unsigned long)flush, mbps, (unsigned long)uspf,
+		USE_LOVYAN_FLUSH ? "lovyan" : "raw",
+#if USE_LOVYAN_FLUSH
+		(int)DISP_BUF_ROWS,
+#else
+		0,
+#endif
+		(int)SPACEBADGE_FPS_BENCH);
+}
+#endif // SPACEBADGE_FPS_LOG
 
 extern volatile unsigned long badgeMode_lastActivity;
 extern game_parent* game;
 
 DRAM_ATTR lv_obj_t *buttons[BUTTON_COUNT];
-DRAM_ATTR WanderCtx ctxs[BUTTON_COUNT];  
+DRAM_ATTR WanderCtx ctxs[BUTTON_COUNT];
 
 bool INPUTWAIT;
 
@@ -57,31 +211,46 @@ void read_touchpad(lv_indev_t* indev, lv_indev_data_t* data)
 	}
 }
 
-// Display rotation
+// Display rotation.
 void set_display_rotation(lv_display_t* disp, lv_display_rotation_t rotation)
 {
-	lv_display_set_rotation(disp, rotation);                    // Updates LVGL's layout engine
-	LCD_SetRotation(static_cast<uint8_t>(rotation));            // Updates ST7789's MADCTL register
-	lv_obj_invalidate(lv_screen_active());                      // Forces redraw of current screen
+#if USE_LOVYAN_FLUSH
+	// LovyanGFX owns the rotation (panel MADCTL). We deliberately do NOT also call
+	// lv_display_set_rotation(): in this vendored LVGL build a custom flush_cb does
+	// no software rotation, so for the badge's 0/180 usage it is a no-op on output,
+	// and for 90/270 it would fight LovyanGFX's transform (resolution swap vs pixel
+	// rotation). Panel-side rotation alone is correct and matches the ui_test ref.
+	lgfx_display.setRotation(static_cast<uint8_t>(rotation));
+#else
+	lv_display_set_rotation(disp, rotation);                    // LVGL layout engine
+	LCD_SetRotation(static_cast<uint8_t>(rotation));            // ST7789 MADCTL
+#endif
+	lv_obj_invalidate(lv_screen_active());                     // force redraw
 }
 
-// Flush function for LVGL
+// Flush callback for LVGL.
 static void my_disp_flush(lv_display_t* disp, const lv_area_t* area, uint8_t* px_map)
 {
-	// flush timing
-	//int64_t start = esp_timer_get_time();
-
 	uint32_t w = (area->x2 - area->x1 + 1);
 	uint32_t h = (area->y2 - area->y1 + 1);
+#if SPACEBADGE_FPS_LOG
+	int64_t t0 = esp_timer_get_time();
+#endif
 
-	// Set the drawing window
-	//LCD_SetCursor(area->x1, area->y1, area->x2, area->y2); //LCD_addWindow already calls this function
-
-	// Send pixels to display
+#if USE_LOVYAN_FLUSH
+	lgfx_display.startWrite();
+	lgfx_display.setAddrWindow(area->x1, area->y1, w, h);
+	lgfx_display.writePixelsDMA((lgfx::rgb565_t*)px_map, w * h);
+	lgfx_display.endWrite();
+#else
 	LCD_addWindow(area->x1, area->y1, area->x2, area->y2, (uint16_t*)px_map);
+#endif
 
-	//int64_t end = esp_timer_get_time();
-	//lv_logf("Flush time: %lld us (%d x %d)\n", end - start, w, h);
+#if SPACEBADGE_FPS_LOG
+	s_flush_us    += (uint64_t)(esp_timer_get_time() - t0);
+	s_flush_count++;
+	s_flush_bytes += (uint64_t)w * h * sizeof(lv_color_t);
+#endif
 
 	// Inform LVGL that flushing is done
 	lv_display_flush_ready(disp);
@@ -99,10 +268,17 @@ bool init_display(void)
 	LV_LOG_INFO("Power enabled\n");
 
 	// Initialize display hardware
-	LCD_Init();  // This function includes pin and SPI initialization
-	LV_LOG_INFO("LCD initialized\n");
+#if USE_LOVYAN_FLUSH
+	lgfx_display.begin();          // bus + panel + reset + ST7789 init sequence
+	lgfx_display.setRotation(0);   // portrait 240x320
+	LV_LOG_INFO("LovyanGFX initialized\n");
+#else
+	LCD_Init();                    // raw driver: pins + SPI + panel init (+ Touch_Init)
+	LV_LOG_INFO("LCD initialized (raw)\n");
+#endif
 
-	// Initialize backlight
+	// Initialize backlight (existing LEDC channel; LovyanGFX is NOT given the
+	// backlight pin, so there is no PWM-channel conflict on pin 5)
 	Backlight_Init();
 	LV_LOG_INFO("Backlight initialized\n");
 
@@ -124,27 +300,40 @@ bool init_display(void)
 	}
 	LV_LOG_TRACE("LVGL display created\n");
 
-	// Check buffer allocation
-	//if (!buf1 || !buf2) {
-	//	LV_LOG_ERROR("Buffer allocation failed: buf1=%p buf2=%p\n", buf1, buf2);
-	//	return false;
-	//}
-	//LV_LOG_INFO("Buffers allocated: buf1=%p buf2=%p\n", buf1, buf2);
-
 	// Set the flush callback
 	LV_LOG_INFO("flush setup...");
 	lv_display_set_flush_cb(disp, my_disp_flush);
 	LV_LOG_INFO("done.\n");
 
-	// Set up the buffers (buf2 = double buffer, replace with NULL for single buffer)
+	// Set up the draw buffer(s)
 	LV_LOG_INFO("buffer setup...");
-	lv_display_set_buffers(disp, buf1, NULL, pixelCount, LV_DISPLAY_RENDER_MODE_PARTIAL); // Single buffer to save RAM
+#if USE_LOVYAN_FLUSH
+	if (!buf1 || !buf2) {
+		LV_LOG_ERROR("Display buffer allocation failed: buf1=%p buf2=%p (%u bytes each)\n",
+			buf1, buf2, (unsigned)DISP_BUF_BYTES);
+		return false;
+	}
+	lv_display_set_buffers(disp, buf1, buf2, DISP_BUF_BYTES, LV_DISPLAY_RENDER_MODE_PARTIAL);
+	LV_LOG_INFO("2 x %u bytes internal DMA RAM\n", (unsigned)DISP_BUF_BYTES);
+#else
+	if (!buf1) {
+		LV_LOG_ERROR("Display buffer allocation failed: buf1=%p\n", buf1);
+		return false;
+	}
+	lv_display_set_buffers(disp, buf1, NULL, pixelCount, LV_DISPLAY_RENDER_MODE_PARTIAL);
+	LV_LOG_INFO("1 x %u bytes internal DMA RAM\n", (unsigned)pixelCount);
+#endif
 	LV_LOG_INFO("done.\n");
 
 	// Set display default
 	LV_LOG_INFO("display setup...");
 	lv_display_set_default(disp);
 	LV_LOG_INFO("done.\n");
+
+#if SPACEBADGE_FPS_LOG
+	lv_display_add_event_cb(disp, fps_on_refr_finish, LV_EVENT_REFR_READY, NULL);
+	lv_timer_create(fps_timer_cb, 1000, NULL);   // 1 Hz report, runs in lv_timer_handler
+#endif
 
 	LV_LOG_INFO("Display initialization complete!\n");
 
