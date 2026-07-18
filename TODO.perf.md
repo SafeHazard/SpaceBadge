@@ -68,6 +68,30 @@ Hardware test: **COM8 available for flashing** — can measure real before/after
 - scripts/build_perf.sh (--upload --port --def X=Y), scripts/measure_fps.sh (capture COM8; DTR/RTS off).
 - Measure gotcha: monitor MUST use dtr=off rts=off or the S3 native-USB-CDC resets and emits nothing.
 
-## Decisions awaiting user
-- (none blocking yet) — arduino-cli core repair is a dev-toolchain fix, within overnight authorization.
-  Fallback if repair fails: user builds/flashes in Visual Studio (known-good) and reads [FPS] over COM8.
+## BLOCKED — needs user physical action
+- The badge's USB port is WEDGED (esptool/arduino-cli "Write timeout" on connect). Cause:
+  I flashed with the wrong partition scheme (built-in app3M_fat9M_16MB instead of the
+  project's custom partitions.csv), which orphaned the LittleFS data -> default config ->
+  a PRE-EXISTING null-deref crash in calculateUnlockedAvatars (avatar_unlocks.cpp:319,
+  reads config.games[0..5] when default config has fewer). The crash-loop resets the
+  USB every ~500ms so the OUT endpoint is never serviced -> writes time out. (Reads work;
+  I captured the crash backtrace to prove it's NOT the display change.)
+- RECOVERY (user): put the board in DOWNLOAD MODE (hold BOOT, tap RESET, release BOOT),
+  then either:
+    * `bash scripts/flash_all.sh --dir build/perf_uart`   (flashes app + correct
+      partition table + the rebuilt LittleFS data image -> boots clean, serial [FPS] on COM8)
+    * or restore the shipping firmware from Binaries/spacebadge_1.1.1-3m.bin.
+  Everything to flash is already built (build/perf_uart) and the data image is at
+  build/spacebadge-littlefs.bin.
+
+## What's DONE and validated
+- Code committed (485d447). Compiles + links (esp32 2.0.17). Adversarial review clean
+  (no High/Critical; color + 0/180 rotation verified vs ui_test reference). BOOT-VERIFIED
+  on hardware (saw boot logs before the unrelated config crash).
+- FIXED build config: build_perf.sh now uses the project's partitions.csv (build.partitions).
+
+## STILL PENDING (needs the badge reflashable)
+- Read the actual [FPS] delta (render fps + us/flush) — LovyanGFX vs raw baseline (A/B via
+  USE_LOVYAN_FLUSH), and the SPACEBADGE_FPS_BENCH max-throughput numbers. Fill in docs table.
+- Human eyeball: confirm on-screen colors look right (I can't see the screen).
+- Then: LV_DEF_REFR_PERIOD 33->16 experiment; consider async flush for real render/DMA overlap.
