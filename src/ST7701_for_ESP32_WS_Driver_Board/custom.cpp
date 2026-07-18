@@ -565,8 +565,10 @@ void setup_cb()
     lv_obj_add_event_cb(objects.cnt_queue_tap, NextLine, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.btn_queue_skip, Skip, LV_EVENT_CLICKED, NULL);
 
-	// badge mode callback   
-    lv_obj_add_event_cb(objects.cnt_badge_tappad, end_badge_mode, LV_EVENT_CLICKED, NULL);
+	// badge mode callback — require a 2 s press-and-hold to dismiss (not a single tap),
+	// so an accidental brush doesn't drop out of badge mode. The 2 s threshold is the
+	// indev long-press time set in init_display (lv_indev_set_long_press_time(indev, 2000)).
+    lv_obj_add_event_cb(objects.cnt_badge_tappad, end_badge_mode, LV_EVENT_LONG_PRESSED, NULL);
 
     // avatar screen callbacks
     lv_obj_add_event_cb(objects.roller_avatar_component, avatarRollerChanged, LV_EVENT_VALUE_CHANGED, NULL);
