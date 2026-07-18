@@ -96,15 +96,16 @@ static LGFX lgfx_display;
 
 // ─── Display buffers ─────────────────────────────────────────────────────────
 #if USE_LOVYAN_FLUSH
-// Two DMA-capable partial buffers in internal RAM. Rendering into fast internal
-// RAM (not PSRAM) then DMA-ing out is the FPS-optimal layout on ESP32-S3.
-// NOTE: with the current blocking flush (endWrite waits for DMA) the second
-// buffer does NOT overlap render with transfer — LVGL only reuses it after the
-// flush returns. It is kept because it is free insurance and is the prerequisite
-// for a future async flush (pushImageDMA + deferred flush_ready) which WOULD
-// overlap. The measured win today is DMA + batched SPI vs per-byte bit-bang.
+// SINGLE DMA-capable partial buffer in internal RAM. A second buffer would ONLY
+// help if the flush were async (pushImageDMA + deferred flush_ready); with the
+// current blocking flush (endWrite waits for DMA) LVGL can't render ahead, so a
+// 2nd buffer buys no concurrency — it just costs ~19 KB of scarce internal RAM,
+// which starved the audio path (Audio_PCM5101 needs ~15 KB free to play a cached
+// MP3; the badge already runs near that limit). 32 rows = 15360 B keeps this BELOW
+// the original driver's 19200 B allocation, leaving MORE headroom for audio.
+// If a future async flush lands, re-enable double buffering behind DISP_DOUBLE_BUFFER.
 #ifndef DISP_BUF_ROWS
-#define DISP_BUF_ROWS 40
+#define DISP_BUF_ROWS 32
 #endif
 static const uint32_t DISP_BUF_PX    = (uint32_t)LCD_WIDTH * DISP_BUF_ROWS;
 static const uint32_t DISP_BUF_BYTES = DISP_BUF_PX * sizeof(lv_color_t);
@@ -112,8 +113,7 @@ static_assert(DISP_BUF_BYTES % 32 == 0, "buffer size must be a multiple of the 3
 
 static lv_color_t* buf1 = (lv_color_t*)heap_caps_aligned_alloc(
 	32, DISP_BUF_BYTES, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
-static lv_color_t* buf2 = (lv_color_t*)heap_caps_aligned_alloc(
-	32, DISP_BUF_BYTES, MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
+static lv_color_t* const buf2 = NULL;  // single-buffered on purpose (see note above)
 #else
 // Original single partial buffer (raw driver baseline).
 static int    pixelCount   = (LCD_WIDTH * LCD_HEIGHT * 2) / 16;
@@ -316,13 +316,13 @@ bool init_display(void)
 	// Set up the draw buffer(s)
 	LV_LOG_INFO("buffer setup...");
 #if USE_LOVYAN_FLUSH
-	if (!buf1 || !buf2) {
-		LV_LOG_ERROR("Display buffer allocation failed: buf1=%p buf2=%p (%u bytes each)\n",
-			buf1, buf2, (unsigned)DISP_BUF_BYTES);
+	if (!buf1) {
+		LV_LOG_ERROR("Display buffer allocation failed: buf1=%p (%u bytes)\n",
+			buf1, (unsigned)DISP_BUF_BYTES);
 		return false;
 	}
 	lv_display_set_buffers(disp, buf1, buf2, DISP_BUF_BYTES, LV_DISPLAY_RENDER_MODE_PARTIAL);
-	LV_LOG_INFO("2 x %u bytes internal DMA RAM\n", (unsigned)DISP_BUF_BYTES);
+	LV_LOG_INFO("1 x %u bytes internal DMA RAM (single-buffered)\n", (unsigned)DISP_BUF_BYTES);
 #else
 	if (!buf1) {
 		LV_LOG_ERROR("Display buffer allocation failed: buf1=%p\n", buf1);
