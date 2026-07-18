@@ -161,6 +161,7 @@ Projects like this are almost never done solo. Here are some of the many who mad
 # AI Disclosure
 All images in this were either created by Artificial Intelligence (AI) at my direction or created by me. 
 Reference images were used in many cases, but to the best of my knowledge & efforts, no commercial content was used in this badge and I used the work of others with permission and within requested scope. Any misuse was unintentional.
+Claude Code helped troubleshoot issues and refine performance - especially on v.1.2.0.
 If you plan to use any portion of this project, please check applicable laws to ensure you are respecting the intellectual property of others. I've done my best to do that in this project and am grateful for the patience and understanding of IP owners if I made any mistakes. Thank you!
 # Intellectual Property Disclaimer
 - This project is an independent fan creation not affiliated with, endorsed by, or sponsored by any intellectual property holders referenced herein. All original artwork was created by the project team or generated using AI tools under our direction.
